@@ -1,0 +1,145 @@
+a {
+  text-decoration: none;
+}
+
+.header {
+  display: flex;
+  background-color: var(--primary-color);
+  margin: 0;
+  height: 100px;
+}
+
+.header__content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: var(--main-padding-properties);
+}
+
+.header__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 405px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  transition: max-height 0.3s ease;
+}
+
+nav a {
+  color: white;
+  transition: 0.1s;
+}
+
+nav a:hover {
+  color: #17CF97;
+}
+
+.header__login-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 170px;
+  width: 100%;
+  font-size: 16px;
+  align-content: center;
+  align-items: center;
+}
+
+.header__login-button {
+  background: none;
+  color: white;
+  border: none;
+  width: fit-content;
+  cursor: pointer;
+  padding: 10px 20px 10px 20px;
+  border-radius: 8px;
+  transition: 0.1s ease-in-out;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.header__login-button:hover {
+  background: #588fc6;
+  color: black;
+}
+
+.header__sign-up-button {
+  background: #17CF97;
+  color: var(--primary-color);
+  border: none;
+  width: fit-content;
+  cursor: pointer;
+  padding: 10px 20px 10px 20px;
+  border-radius: 8px;
+  transition: 0.1s ease-in-out;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.header__menu-icon-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+}
+
+.header__menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+@media (max-width: 1002px) {
+  .header {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .header__content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    padding: 0 50px 0 50px;
+  }
+}
+
+@media (max-width: 882px) {
+  .header {
+    padding: 0;
+  }
+  .header__content, .header__login-content {
+    display: none;
+  }
+  .header__menu-icon {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 602px) {
+  .header__content-container {
+    gap: 2rem;
+  }
+}
+
+.header__menu-open {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary-color);
+  position: absolute;
+  top: 70px;
+  right: 12.9%;
+  width: 30%;
+  padding: 1rem;
+  gap: 1rem;
+  border: 1px solid #17CF97;
+  border-radius: 8px;
+}
