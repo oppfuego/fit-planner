@@ -5,9 +5,11 @@ import CubeAnimation from "../../components/cube-animation/CubeAnimation";
 
 const HomePage = () => {
     return (
-        <div>
+        <div id="root">
             <Header/>
-            <CubeAnimation/>
+            <main>
+                <CubeAnimation/>
+            </main>
             <Footer/>
         </div>
     );

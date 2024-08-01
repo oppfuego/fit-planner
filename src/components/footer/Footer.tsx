@@ -10,59 +10,43 @@ import {FaSquareYoutube} from "react-icons/fa6";
 const Footer = () => {
     return (
         <div className="footer">
-            <div className="footer__content-container">
-                <div className="footer__top-content">
+            <div className="content__container">
+                <div className="content__container--top">
                     <Link to="/">
                         <Logo/>
                     </Link>
-                    <section className="footer__content">
-                        <p>Join Us</p>
-                        <nav className="footer__social-networks">
-                            <a href="#">
-                                <FaSquareInstagram/>
-                            </a>
-                            <a href="#">
-                                <FaSquareFacebook/>
-                            </a>
-                            <a href="#">
-                                <FaSquareTwitter/>
-                            </a>
-                            <a href="#">
-                                <FaSquareYoutube/>
-                            </a>
+                    <section className="top__content">
+                        <p className="top__content--text">Join Us</p>
+                        <nav className="top__content--social">
+                            <a href="#" className="top__content--list"><FaSquareInstagram/></a>
+                            <a href="#" className="top__content--list"><FaSquareFacebook/></a>
+                            <a href="#" className="top__content--list"><FaSquareTwitter/></a>
+                            <a href="#" className="top__content--list"><FaSquareYoutube/></a>
                         </nav>
                     </section>
                 </div>
-                <hr className="dividing__line"/>
-                <div className="footer__main-content">
-                    <div className="footer__left-content">
-                        <h1>
-                            Choose your coach and follow your dreams together
-                        </h1>
+                <hr className="dividing"/>
+                <div className="content__container--main">
+                    <div className="footer__left">
+                        <h1 className="footer__left--text">Choose your coach and follow your dreams together</h1>
                     </div>
-                    <div className="footer__right-content">
+                    <div className="footer__right">
                         <nav className="footer__links">
-                            <h2>
-                                About Us
-                            </h2>
+                            <h2 className="footer__links footer__links--text">About Us</h2>
                             <a href="">About Us</a>
                             <a href="">Services</a>
                             <a href="">Training plans</a>
                             <a href="">Our Trainers</a>
                         </nav>
                         <nav className="footer__links">
-                            <h2>
-                                Contact Us
-                            </h2>
+                            <h2 className="footer__links footer__links--text">Contact Us</h2>
                             <a href="">Email: fitplaner@gmail.com</a>
                             <a href="">Contact number: +380 123 456 789</a>
                             <a href="">Address: LoremIpsum 18-A</a>
                             <a href="">Working hours: Mn-Fr, 9:00 - 18:00</a>
                         </nav>
                         <nav className="footer__links">
-                            <h2>
-                                Legal
-                            </h2>
+                            <h2 className="footer__links footer__links--text">Legal</h2>
                             <a href="">Terms</a>
                             <a href="">Privacy Policy</a>
                             <a href="">Coockie Policy</a>
@@ -70,15 +54,10 @@ const Footer = () => {
                         </nav>
                     </div>
                 </div>
-                <hr className="dividing__line"/>
-
-                <div className="footer__bottom-content">
-                    <p>
-                        © 2024 FitPlaner. All rights reserved.
-                    </p>
-
+                <hr className="dividing"/>
+                <div className="content__container--bottom">
+                    <p>© 2024 FitPlaner. All rights reserved.</p>
                 </div>
-
             </div>
         </div>
     );

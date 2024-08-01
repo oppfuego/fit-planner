@@ -6,41 +6,31 @@ import {GrApple} from "react-icons/gr";
 
 const LoginForm = () => {
     return (
-        <div className="login__button">
-            <div className="login__headline">
-                <h1>
-                    Sign in
-                </h1>
-                <p>
-                    Sign in to your account to see products catered to you
-                </p>
+        <div className="login">
+            <div className="login__top-container">
+                <h1 className="login__top-container--headline">Sign in</h1>
+                <p className="login__top-container--text">Sign in to your account to see products catered to you</p>
             </div>
             <div className="login__input">
-                <div className="login__input-wrapper">
-                    <input
-                        type="text"
+                <div>
+                    <input type="text"
                         placeholder="Username"
-                        className="input-field"
-                    />
+                        className="login__input--field"/>
                 </div>
-                <div className="login__input-wrapper">
-                    <input
-                        type="password"
+                <div>
+                    <input type="password"
                         placeholder="Password"
-                        className="input-field"
-                    />
+                        className="login__input--field"/>
                 </div>
             </div>
             <button className="login__sign-in-button">
                 Sign In
             </button>
-            <p>
-                or, sign in with
-            </p>
+            <p>or, sign in with</p>
             <div className="login__social-links">
-                <button className="login__social-links-button"><AiFillGoogleCircle/></button>
-                <button className="login__social-links-button"><FaFacebook/></button>
-                <button className="login__social-links-button"><GrApple/></button>
+                <button className="login__social-links--button"><AiFillGoogleCircle/></button>
+                <button className="login__social-links--button"><FaFacebook/></button>
+                <button className="login__social-links--button"><GrApple/></button>
             </div>
         </div>
     );

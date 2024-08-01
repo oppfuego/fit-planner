@@ -22,55 +22,48 @@ const Header = () => {
     return (
         <div className="header">
             <div className="header__content-container">
-                <div className="header__logo-wrapper">
+                <div className="header__content-logo">
                     <Link to="/">
-                        <Logo className="logo__wrapper-logo"/>
+                        <Logo/>
                     </Link>
                 </div>
-                <div className="header__menu-icon-wrapper">
-                    <span className="header__menu-icon" onClick={toggleMenu}>
+                <div className="header__menu">
+                    <span className="header__menu--icon" onClick={toggleMenu}>
                         <FaBars/>
                     </span>
-                    <span className="header__menu-icon" onClick={toggleLoginModal}
-                    >
+                    <span className="header__menu--icon" onClick={toggleLoginModal}>
                         <FaUser/>
                     </span>
                     <ModalSign isOpen={isLoginModalOpen}
-                               onClose={toggleSignupModal}
-                               >
+                               onClose={toggleSignupModal}>
                         <LoginForm/>
                     </ModalSign>
                 </div>
                 <nav className={`header__content ${menuOpen ? 'header__menu-open' : ''}`}>
-                    <a href="#">About Us</a>
-                    <a href="#">Services</a>
-                    <a href="#">Our Trainers</a>
-                    <a href="#">Contacts</a>
+                    <a href="#" className="header__content--list">About Us</a>
+                    <a href="#" className="header__content--list">Services</a>
+                    <a href="#" className="header__content--list">Our Trainers</a>
+                    <a href="#" className="header__content--list">Contacts</a>
                 </nav>
-                <div className="header__login-content">
-                    <button className="header__login-button"
-                            onClick={toggleLoginModal}
-                    >
+                <div className="header__login">
+                    <button className="header__login--button"
+                            onClick={toggleLoginModal}>
                         Log in
                     </button>
                     <ModalSign
                         isOpen={isLoginModalOpen}
-                        onClose={toggleLoginModal}
-                    >
+                        onClose={toggleLoginModal}>
                         <LoginForm/>
                     </ModalSign>
-                    <button className="header__sign-up-button"
-                            onClick={toggleSignupModal}
-                    >
+                    <button className="header__login--sign-up-button"
+                            onClick={toggleSignupModal}>
                         Sign up
                     </button>
                     <ModalSign
                         isOpen={isSignupModalOpen}
-                        onClose={toggleSignupModal}
-                    >
+                        onClose={toggleSignupModal}>
                         <SignUpForm/>
                     </ModalSign>
-
                 </div>
             </div>
         </div>

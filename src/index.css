@@ -12,6 +12,21 @@ code {
     monospace;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
 :root {
     --primary-color: #14212D;
     --main-padding-properties: 0 120px 0 120px;

@@ -1,44 +1,66 @@
-.header__sign-up-content{
+.sign-up{
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
+  &__top-container{
+    align-items: center;
+    text-align: center;
+    width: 320px;
+    &--headline{
+      font-size: 48px;
+      font-weight: bold;
+    }
+    &--text{
+      font-size: 16px;
+      color: #1C1C1C;
+    }
+  }
+  &__button{
+    width: 530px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #000000;
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  &__social-links{
+    display: flex;
+    gap: 10px;
+    &--button{
+      background: none;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  }
 }
 
-.sign-up__headline{
-  align-items: center;
-  text-align: center;
-  width: 320px;
-}
-
-.sign-up__headline h1{
-  font-size: 48px;
-  font-weight: bold;
-}
-
-.sign-up__headline p{
-  font-size: 16px;
-  color: #1C1C1C;
-}
-
-.sign-up__inputs-wrapper{
+.sign-up__inputs{
   display: flex;
   flex-direction: row;
   align-items: center;
   background-color: #ffffff;
   margin: 20px;
   gap: 10px;
+  &__inputs-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
-.sign-up__inputs{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.sign-up__inputs input{
+.sign-up__inputs-container--field{
   width: 240px;
   padding: 10px;
   margin-bottom: 10px;
@@ -47,31 +69,4 @@
   border-radius: 6px;
 }
 
-.sign-up__button{
-  width: 530px;
-  padding: 10px;
-  margin-top: 10px;
-  font-size: 16px;
-  color: #000000;
-  background-color: var(--secondary-color);
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
 
-.sign-up__social-links{
-  display: flex;
-  gap: 10px;
-}
-
-.sign-up__social-button{
-  background: none;
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}

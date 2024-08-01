@@ -1,6 +1,6 @@
 import React from 'react';
 import "./ModalSign.scss";
-import { IoMdClose } from "react-icons/io";
+import {IoMdClose} from "react-icons/io";
 
 
 interface ModalSignProps {
@@ -9,7 +9,7 @@ interface ModalSignProps {
     children?: React.ReactNode;
 }
 
-const ModalSign: React.FC<ModalSignProps> = ({isOpen, onClose, children }) => {
+const ModalSign: React.FC<ModalSignProps> = ({isOpen, onClose, children}) => {
     const outsideRef = React.useRef(null);
 
     const handleCloseOnOverlay = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
@@ -20,21 +20,16 @@ const ModalSign: React.FC<ModalSignProps> = ({isOpen, onClose, children }) => {
 
     return isOpen ? (
         <div className="modal">
-            <div
-                ref={outsideRef}
-                className="modal__wrapper"
-                onClick={handleCloseOnOverlay}
-            />
+            <div ref={outsideRef}
+                 className="modal__wrapper"
+                 onClick={handleCloseOnOverlay}/>
             <div className="modal__content">
-                <button
-                    className="modal__content-close-btn"
-                    onClick={onClose}
-                >
+                <button className="modal__content-close-btn"
+                    onClick={onClose}>
                     <IoMdClose/>
                 </button>
-
                 <div className="modal__inner-content">
-                    { children }
+                    {children}
                 </div>
             </div>
         </div>

@@ -7,15 +7,25 @@ a {
   background-color: var(--primary-color);
   margin: 0;
   height: 100px;
+  &__content-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: var(--main-padding-properties);
+  }
 }
 
-.header__content-container {
+.header__menu {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  gap: 2rem;
   align-items: center;
-  text-align: center;
-  width: 100%;
-  padding: var(--main-padding-properties);
+  &--icon{
+    display: none;
+    cursor: pointer;
+  }
 }
 
 .header__content {
@@ -27,18 +37,16 @@ a {
   font-size: 16px;
   font-weight: 400;
   transition: max-height 0.3s ease;
+  &--list{
+    color: white;
+    transition: 0.1s;
+  }
+  &--list:hover{
+    color: #17CF97;
+  }
 }
 
-nav a {
-  color: white;
-  transition: 0.1s;
-}
-
-nav a:hover {
-  color: #17CF97;
-}
-
-.header__login-content {
+.header__login{
   display: flex;
   justify-content: space-between;
   max-width: 170px;
@@ -46,49 +54,34 @@ nav a:hover {
   font-size: 16px;
   align-content: center;
   align-items: center;
-}
-
-.header__login-button {
-  background: none;
-  color: white;
-  border: none;
-  width: fit-content;
-  cursor: pointer;
-  padding: 10px 20px 10px 20px;
-  border-radius: 8px;
-  transition: 0.1s ease-in-out;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.header__login-button:hover {
-  background: #588fc6;
-  color: black;
-}
-
-.header__sign-up-button {
-  background: #17CF97;
-  color: var(--primary-color);
-  border: none;
-  width: fit-content;
-  cursor: pointer;
-  padding: 10px 20px 10px 20px;
-  border-radius: 8px;
-  transition: 0.1s ease-in-out;
-  font-size: 14px;
-  font-weight: 400;
-}
-
-.header__menu-icon-wrapper {
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  align-items: center;
-}
-
-.header__menu-icon {
-  display: none;
-  cursor: pointer;
+  &--button{
+    background: none;
+    color: white;
+    border: none;
+    width: fit-content;
+    cursor: pointer;
+    padding: 10px 20px 10px 20px;
+    border-radius: 8px;
+    transition: 0.1s ease-in-out;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  &--button:hover{
+    background: #588fc6;
+    color: black;
+  }
+  &--sign-up-button{
+    background: #17CF97;
+    color: var(--primary-color);
+    border: none;
+    width: fit-content;
+    cursor: pointer;
+    padding: 10px 20px 10px 20px;
+    border-radius: 8px;
+    transition: 0.1s ease-in-out;
+    font-size: 14px;
+    font-weight: 400;
+  }
 }
 
 @media (max-width: 1002px) {
@@ -113,10 +106,10 @@ nav a:hover {
   .header {
     padding: 0;
   }
-  .header__content, .header__login-content {
+  .header__content, .header__login{
     display: none;
   }
-  .header__menu-icon {
+  .header__menu--icon {
     display: flex;
     align-items: center;
     color: white;
