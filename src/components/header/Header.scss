@@ -7,7 +7,8 @@ a {
   background-color: var(--primary-color);
   margin: 0;
   height: 100px;
-  &__content-container{
+
+  &__content-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,46 +16,50 @@ a {
     width: 100%;
     padding: var(--main-padding-properties);
   }
-}
 
-.header__menu {
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  align-items: center;
-  &--icon{
+  &__menu {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  &__menu-icon {
     display: none;
     cursor: pointer;
   }
-}
 
-.header__content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 405px;
-  width: 100%;
-  font-size: 16px;
-  font-weight: 400;
-  transition: max-height 0.3s ease;
-  &--list{
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 405px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    transition: max-height 0.3s ease;
+  }
+
+  &__content-list {
     color: white;
     transition: 0.1s;
   }
-  &--list:hover{
+
+  &__content-list:hover {
     color: #17CF97;
   }
-}
 
-.header__login{
-  display: flex;
-  justify-content: space-between;
-  max-width: 170px;
-  width: 100%;
-  font-size: 16px;
-  align-content: center;
-  align-items: center;
-  &--button{
+  &__login {
+    display: flex;
+    justify-content: space-between;
+    max-width: 170px;
+    width: 100%;
+    font-size: 16px;
+    align-content: center;
+    align-items: center;
+  }
+
+  &__login-button {
     background: none;
     color: white;
     border: none;
@@ -65,23 +70,23 @@ a {
     transition: 0.1s ease-in-out;
     font-size: 14px;
     font-weight: 400;
+
+    &--sign-up {
+      background: #17CF97;
+      color: black;
+    }
   }
-  &--button:hover{
+
+  &__login-button:hover {
     background: #588fc6;
     color: black;
   }
-  &--sign-up-button{
+
+  &__login-button--sign-up:hover {
     background: #17CF97;
-    color: var(--primary-color);
-    border: none;
-    width: fit-content;
-    cursor: pointer;
-    padding: 10px 20px 10px 20px;
-    border-radius: 8px;
-    transition: 0.1s ease-in-out;
-    font-size: 14px;
-    font-weight: 400;
+    color: black;
   }
+
 }
 
 @media (max-width: 1002px) {
@@ -106,10 +111,10 @@ a {
   .header {
     padding: 0;
   }
-  .header__content, .header__login{
+  .header__content, .header__login {
     display: none;
   }
-  .header__menu--icon {
+  .header__menu-icon {
     display: flex;
     align-items: center;
     color: white;
