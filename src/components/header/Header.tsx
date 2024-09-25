@@ -39,7 +39,7 @@ const Header = () => {
                         <LoginForm/>
                     </ModalSign>
                 </div>
-                <nav className={`header__content ${menuOpen ? 'header__menu-open' : ''}`}>
+                <nav className={`header__content ${menuOpen ? 'header__content--open' : ''}`}>
                     <a href="#" className="header__content-list">About Us</a>
                     <a href="#" className="header__content-list">Services</a>
                     <a href="#" className="header__content-list">Our Trainers</a>

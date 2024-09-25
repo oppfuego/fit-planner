@@ -38,6 +38,21 @@ a {
     font-size: 16px;
     font-weight: 400;
     transition: max-height 0.3s ease;
+
+    &.header__content--open {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--primary-color);
+      position: absolute;
+      top: 70px;
+      right: 12.9%;
+      width: 30%;
+      padding: 1rem;
+      gap: 1rem;
+      border: 1px solid #17CF97;
+      border-radius: 8px;
+      z-index: 2;
+    }
   }
 
   &__content-list {
@@ -71,23 +86,22 @@ a {
     font-size: 14px;
     font-weight: 400;
 
+    &:hover {
+      background: #588fc6;
+      color: black;
+    }
+
     &--sign-up {
       background: #17CF97;
       color: black;
+
+      &:hover {
+        background: #17CF97;
+      }
     }
   }
-
-  &__login-button:hover {
-    background: #588fc6;
-    color: black;
-  }
-
-  &__login-button--sign-up:hover {
-    background: #17CF97;
-    color: black;
-  }
-
 }
+
 
 @media (max-width: 1002px) {
   .header {
@@ -96,29 +110,31 @@ a {
     justify-content: center;
     align-items: center;
     width: 100%;
-  }
-  .header__content-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    text-align: center;
-    padding: 0 50px 0 50px;
+
+    &__content-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      text-align: center;
+      padding: 0 50px 0 50px;
+    }
   }
 }
 
 @media (max-width: 882px) {
   .header {
     padding: 0;
-  }
-  .header__content, .header__login {
-    display: none;
-  }
-  .header__menu-icon {
-    display: flex;
-    align-items: center;
-    color: white;
-    font-size: 28px;
+    &__content, &__login {
+      display: none;
+    }
+
+    &__menu-icon {
+      display: flex;
+      align-items: center;
+      color: white;
+      font-size: 28px;
+    }
   }
 }
 
@@ -128,17 +144,9 @@ a {
   }
 }
 
-.header__menu-open {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--primary-color);
-  position: absolute;
-  top: 70px;
-  right: 12.9%;
-  width: 30%;
-  padding: 1rem;
-  gap: 1rem;
-  border: 1px solid #17CF97;
-  border-radius: 8px;
-  z-index: 2;
-}
+
+
+
+
+
+
