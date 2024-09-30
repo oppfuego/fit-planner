@@ -11,7 +11,6 @@ const HomePage = () => {
             <Header/>
             <main>
                 <Calendar/>
-                <HomePageContent/>
             </main>
             <Footer/>
         </div>

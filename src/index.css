@@ -12,9 +12,10 @@ code {
     monospace;
 }
 
-html, body {
+html, body, #root {
     height: 100%;
     margin: 0;
+    padding: 0;
 }
 
 #root {
@@ -28,7 +29,7 @@ main {
 }
 
 :root {
-    --primary-color: #14212D;
+    --primary-color: #0f202b;
     --main-padding-properties: 0 120px 0 120px;
     --secondary-color: #17CF97;
 }
