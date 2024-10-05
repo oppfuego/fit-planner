@@ -45,7 +45,7 @@ const Header = () => {
                 </nav>
                 <div className={`header__login ${isLoggedIn ? 'header__login--logged-in' : ''}`}>
                     {isLoggedIn ? (
-                        <Link to="/profile" className="header__profile-icon">
+                        <Link to="/info-user-page" className="header__profile-icon">
                             <FaUser/>
                         </Link>
                     ) : (

@@ -70,14 +70,17 @@ a {
   &__login {
     display: flex;
     justify-content: center;
-    max-width: 170px;
+    max-width: 180px;
     width: 100%;
     font-size: 16px;
     align-content: center;
     align-items: center;
+    gap: 10px;
+
 
     &.header__login--logged-in {
-      width: 50px;
+      display: block;
+
     }
   }
 
@@ -144,11 +147,12 @@ a {
 @media (max-width: 882px) {
   .header {
     padding: 0;
+
     &__content, &__login {
       display: none;
     }
 
-    &__menu{
+    &__menu {
       position: inherit;
     }
 

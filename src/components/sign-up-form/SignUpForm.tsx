@@ -70,7 +70,6 @@ const SignUpForm = () => {
                            className="sign-up__input-field"/>
                     <input type="password"
                            placeholder="Confirm password"
-                           onChange={(e) => setConfirmPassword(e.target.value)}
                            className="sign-up__input-field"/>
                 </div>
             </section>
