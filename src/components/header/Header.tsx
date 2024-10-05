@@ -1,43 +1,41 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Header.scss";
-import {ReactComponent as Logo} from "../../assets/Logo.svg";
-import {Link} from "react-router-dom";
-import {FaBars, FaUser} from "react-icons/fa";
-import ModalSign from "../modal-sign/ModalSign";
-import LoginForm from "../login-form/LoginForm";
-import SignUpForm from "../sign-up-form/SignUpForm";
+import { ReactComponent as Logo } from "../../assets/Logo.svg";
+import { Link } from "react-router-dom";
+import { FaBars, FaUser } from "react-icons/fa";
+import {auth} from '../../FirebaseConfig';
+
 
 const Header = () => {
+
     const [menuOpen, setMenuOpen] = useState(false);
 
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
-    const [isLoginModalOpen, setLoginModalState] = React.useState(false);
-    const toggleLoginModal = () => setLoginModalState(!isLoginModalOpen);
+    const toggleMenu = () => setMenuOpen(!menuOpen);
 
-    const [isSignupModalOpen, setSignupModalState] = React.useState(false);
-    const toggleSignupModal = () => setSignupModalState(!isSignupModalOpen);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            setIsLoggedIn(!!user);
+        });
+        return () => unsubscribe();
+    }, []);
 
     return (
         <div className="header">
             <div className="header__content-container">
                 <div>
                     <Link to="/">
-                        <Logo/>
+                        <Logo />
                     </Link>
                 </div>
                 <div className="header__menu">
                     <span className="header__menu-icon" onClick={toggleMenu}>
-                        <FaBars/>
+                        <FaBars />
                     </span>
-                    <span className="header__menu-icon" onClick={toggleLoginModal}>
-                        <FaUser/>
-                    </span>
-                    <ModalSign isOpen={isLoginModalOpen}
-                               onClose={toggleSignupModal}>
-                        <LoginForm/>
-                    </ModalSign>
+                    <Link to="/login" className="header__menu-icon">
+                        <FaUser />
+                    </Link>
                 </div>
                 <nav className={`header__content ${menuOpen ? 'header__content--open' : ''}`}>
                     <a href="#" className="header__content-list">About Us</a>
@@ -45,25 +43,21 @@ const Header = () => {
                     <a href="#" className="header__content-list">Our Trainers</a>
                     <a href="#" className="header__content-list">Contacts</a>
                 </nav>
-                <div className="header__login">
-                    <button className="header__login-button"
-                            onClick={toggleLoginModal}>
-                        Log in
-                    </button>
-                    <ModalSign
-                        isOpen={isLoginModalOpen}
-                        onClose={toggleLoginModal}>
-                        <LoginForm/>
-                    </ModalSign>
-                    <button className="header__login-button header__login-button--sign-up"
-                            onClick={toggleSignupModal}>
-                        Sign up
-                    </button>
-                    <ModalSign
-                        isOpen={isSignupModalOpen}
-                        onClose={toggleSignupModal}>
-                        <SignUpForm/>
-                    </ModalSign>
+                <div className={`header__login ${isLoggedIn ? 'header__login--logged-in' : ''}`}>
+                    {isLoggedIn ? (
+                        <Link to="/profile" className="header__profile-icon">
+                            <FaUser/>
+                        </Link>
+                    ) : (
+                        <>
+                            <Link to="/login" className="header__login-button">
+                                Log in
+                            </Link>
+                            <Link to="/signup" className="header__login-button header__login-button--sign-up">
+                                Sign up
+                            </Link>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

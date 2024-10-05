@@ -1,27 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './Calendar.scss';
-import {Link} from 'react-router-dom';
-import {FaEye} from "react-icons/fa";
-import {FaPlus} from "react-icons/fa6";
+import { Link } from 'react-router-dom';
+import { FaEye } from "react-icons/fa";
+import { FaPlus } from "react-icons/fa6";
 import PlanTrainingForm from '../plan-training-form/PlanTrainingForm';
 import ModalSign from '../modal-sign/ModalSign';
-
-export interface CalendarViewDataModel {
-    currentDate: Date;
-    currentMonth: Date;
-    displayMonth: string;
-    displayYear: number;
-    items: CalendarItemViewDataModel[];
-}
-
-export interface CalendarItemViewDataModel {
-    date: Date;
-    active: boolean;
-    displayDay: number;
-    displayWeekDay: string;
-    disabled: boolean;
-    trainingProgramID: number | null;
-}
+import { CalendarViewDataModel, CalendarItemViewDataModel } from "../models/CalendarModels";
 
 const Calendar: React.FC = () => {
     const [calendarData, setCalendarData] = useState<CalendarViewDataModel | null>(null);
@@ -148,7 +132,7 @@ const Calendar: React.FC = () => {
                     } else {
 
                         return day.trainingProgramID ? (
-                            <Link to={`/TrainingProgramPage/${day.trainingProgramID}`} className={getClass(day)}>
+                            <Link to={`/training-program-page/${day.trainingProgramID}`} className={getClass(day)}>
                                 <div className="calendar__cell">
                                     <p>{day.displayDay}</p>
                                     <p>{day.displayWeekDay}</p>

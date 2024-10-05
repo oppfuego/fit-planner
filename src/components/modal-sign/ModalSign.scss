@@ -23,6 +23,8 @@
 .modal__content {
   position: relative;
   width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
   margin: 0 5%;
   padding: 40px;
   box-sizing: border-box;
@@ -41,20 +43,20 @@
   cursor: pointer;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 602px) {
   .modal__content {
     width: 80%;
+    padding: 35px;
   }
 }
 
-@media screen and (min-width: 800px) {
-  .modal__content {
-    width: 60%;
-  }
-}
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1002px) {
   .modal__content {
     width: 40%;
+    padding: 25px;
   }
 }
+
+
+

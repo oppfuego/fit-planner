@@ -9,6 +9,7 @@ a {
 
   &__content-container {
     display: flex;
+    position: relative;
     justify-content: space-between;
     align-items: center;
     text-align: center;
@@ -23,6 +24,7 @@ a {
     flex-direction: row;
     gap: 2rem;
     align-items: center;
+    position: absolute;
   }
 
   &__menu-icon {
@@ -67,12 +69,16 @@ a {
 
   &__login {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     max-width: 170px;
     width: 100%;
     font-size: 16px;
     align-content: center;
     align-items: center;
+
+    &.header__login--logged-in {
+      width: 50px;
+    }
   }
 
   &__login-button {
@@ -99,6 +105,18 @@ a {
       &:hover {
         background: #17CF97;
       }
+    }
+  }
+
+  &__profile-icon {
+    color: white;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+    align-items: center;
+    font-size: 26px;
+
+    &:hover {
+      color: var(--secondary-color);
     }
   }
 }
@@ -128,6 +146,10 @@ a {
     padding: 0;
     &__content, &__login {
       display: none;
+    }
+
+    &__menu{
+      position: inherit;
     }
 
     &__menu-icon {
