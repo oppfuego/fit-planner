@@ -68,6 +68,11 @@
   }
 }
 
+.login__input-field.error{
+  border: 1px solid #e82323;
+  background-color: #ffe6e6;
+}
+
 @media screen and (max-width: 1350px) {
   .login {
     &__top-container {

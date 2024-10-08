@@ -5,7 +5,7 @@ import { FaEye } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import PlanTrainingForm from '../plan-training-form/PlanTrainingForm';
 import ModalSign from '../modal-sign/ModalSign';
-import { CalendarViewDataModel, CalendarItemViewDataModel } from "../models/CalendarModels";
+import { CalendarViewDataModel, CalendarItemViewDataModel } from "./CalendarModels";
 
 const Calendar: React.FC = () => {
     const [calendarData, setCalendarData] = useState<CalendarViewDataModel | null>(null);

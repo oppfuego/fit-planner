@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import "./Header.scss";
-import { ReactComponent as Logo } from "../../assets/Logo.svg";
-import { Link } from "react-router-dom";
-import { FaBars, FaUser } from "react-icons/fa";
+import {ReactComponent as Logo} from "../../assets/Logo.svg";
+import {Link} from "react-router-dom";
+import {FaBars, FaUser} from "react-icons/fa";
 import {auth} from '../../FirebaseConfig';
 
 
@@ -25,23 +25,42 @@ const Header = () => {
         <div className="header">
             <div className="header__content-container">
                 <div>
-                    <Link to="/">
-                        <Logo />
-                    </Link>
+                    {isLoggedIn ? (
+                        <Link to={"/home"} className="header__content-list--mod"> <Logo/>
+                        </Link>
+
+                    ) : (
+                        <Link to={"/"} className="header__content-list--mod"> <Logo/>
+                        </Link>
+                    )}
                 </div>
                 <div className="header__menu">
                     <span className="header__menu-icon" onClick={toggleMenu}>
-                        <FaBars />
+                        <FaBars/>
                     </span>
-                    <Link to="/login" className="header__menu-icon">
-                        <FaUser />
-                    </Link>
+                    {isLoggedIn ? (
+                        <Link to="/info-user-page" className="header__menu-icon">
+                            <FaUser/>
+                        </Link>
+                    ) : (
+                        <>
+                            <Link to="/login" className="header__menu-icon">
+                                <FaUser/>
+                            </Link>
+                        </>
+                    )}
                 </div>
                 <nav className={`header__content ${menuOpen ? 'header__content--open' : ''}`}>
-                    <a href="#" className="header__content-list">About Us</a>
-                    <a href="#" className="header__content-list">Services</a>
-                    <a href="#" className="header__content-list">Our Trainers</a>
-                    <a href="#" className="header__content-list">Contacts</a>
+                    {isLoggedIn ? (
+                        <>
+                            <a href="#" className="header__content-list">About Us</a>
+                            <a href="#" className="header__content-list">Services</a>
+                            <a href="#" className="header__content-list">Our Trainers</a>
+                            <a href="#" className="header__content-list">Contacts</a>
+                        </>
+                    ) : (
+                        <Link to={"/home"} className="header__content-list--mod">Schedule</Link>
+                    )}
                 </nav>
                 <div className={`header__login ${isLoggedIn ? 'header__login--logged-in' : ''}`}>
                     {isLoggedIn ? (

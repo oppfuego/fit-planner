@@ -58,6 +58,18 @@ a {
     }
   }
 
+  &__content-list--mod {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: white;
+    transition: 0.1s;
+
+    &:hover {
+      color: #17CF97;
+    }
+  }
+
   &__content-list {
     color: white;
     transition: 0.1s;
@@ -148,12 +160,16 @@ a {
   .header {
     padding: 0;
 
-    &__content, &__login {
+    &__content, &__login, &__profile-icon {
       display: none;
     }
 
     &__menu {
       position: inherit;
+    }
+
+    &__login {
+      position: absolute;
     }
 
     &__menu-icon {

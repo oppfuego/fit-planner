@@ -3,6 +3,7 @@ import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 import { auth, db } from '../../FirebaseConfig';
 import { doc, getDoc } from "firebase/firestore";
+import './InfoUserPage.scss';
 
 const InfoUserPage = () => {
     const [user, setUser] = useState<any>(null);
@@ -30,15 +31,18 @@ const InfoUserPage = () => {
         <div>
             <Header />
 
-            <div>
-                <h1>Profile</h1>
+            <div className="user-page">
+                <h1 className="user-page__title">Profile</h1>
                 {user ? (
                     <>
-                        <p>First name: {user.firstName}</p>
-                        <p>Second name: {user.secondName}</p>
-                        <p>Email: {user.email}</p>
-                        <p>Phone number: {user.phoneNumber}</p>
-                        <button onClick={handleLogout}>
+                        <h2 className="user-page__headline">
+                            Hello, {user.firstName} {user.secondName}!
+                        </h2>
+
+                        <p className="user-page__info">Email: {user.email}</p>
+                        <p className="user-page__info">Phone number: {user.phoneNumber}</p>
+
+                        <button onClick={handleLogout} className="logout-btn">
                             Logout
                         </button>
                     </>

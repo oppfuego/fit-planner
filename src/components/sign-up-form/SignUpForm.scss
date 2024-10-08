@@ -81,6 +81,16 @@
   }
 }
 
+.sign-up__input-field.error {
+  border: 1px solid #e82323;
+  background-color: #ffe6e6;
+}
+
+.error-message{
+    color: #e82323;
+    font-size: 16px;
+}
+
 @media screen and (max-width: 1350px) {
   .sign-up {
     &__top-container {
