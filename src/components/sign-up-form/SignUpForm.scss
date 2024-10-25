@@ -23,21 +23,23 @@
   &__top-container-text {
     font-size: 16px;
     color: #1C1C1C;
-
   }
 
   &__inputs {
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
-    text-align: center;
-    background-color: #ffffff;
-    gap: 10px;
+    gap: 20px;
     flex-wrap: wrap;
   }
 
-  &__inputs-container {
+  &__inputs-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__input-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,7 +48,6 @@
   &__input-field {
     width: 240px;
     padding: 10px;
-    margin-bottom: 10px;
     font-size: 16px;
     border: 1px solid #cccccc;
     border-radius: 6px;
@@ -55,7 +56,7 @@
   &__button {
     width: 530px;
     padding: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
     font-size: 16px;
     color: #000000;
     background-color: var(--secondary-color);
@@ -81,14 +82,12 @@
   }
 }
 
-.sign-up__input-field.error {
-  border: 1px solid #e82323;
-  background-color: #ffe6e6;
-}
-
-.error-message{
-    color: #e82323;
-    font-size: 16px;
+.error-message {
+  color: #d82323;
+  font-size: 14px;
+  margin-top: 5px;
+  width: 100%;
+  text-align: left;
 }
 
 @media screen and (max-width: 1350px) {
@@ -177,5 +176,10 @@
     &__social-icons {
       font-size: 20px;
     }
+
+
   }
 }
+
+
+

@@ -1,56 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
+import Profile from "../../components/profile/Profile";
+import UsersInfoAdmin from "../../components/users-info-admin/UsersInfoAdmin";
 import { auth, db } from '../../FirebaseConfig';
 import { doc, getDoc } from "firebase/firestore";
-import './InfoUserPage.scss';
 
 const InfoUserPage = () => {
-    const [user, setUser] = useState<any>(null);
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const UserData = async () => {
+        const checkAdmin = async () => {
             const currentUser = auth.currentUser;
             if (currentUser) {
                 const userDoc = await getDoc(doc(db, "Users", currentUser.uid));
-                if (userDoc.exists()) {
-                    setUser(userDoc.data());
+                if (userDoc.exists() && userDoc.data().role === 'Admin') {
+                    setIsAdmin(true);
                 }
             }
+            setLoading(false);
         };
 
-        UserData();
+        checkAdmin();
     }, []);
-
-    const handleLogout = async () => {
-        await auth.signOut();
-        window.location.href = "/";
-    };
 
     return (
         <div>
             <Header />
-
-            <div className="user-page">
-                <h1 className="user-page__title">Profile</h1>
-                {user ? (
-                    <>
-                        <h2 className="user-page__headline">
-                            Hello, {user.firstName} {user.secondName}!
-                        </h2>
-
-                        <p className="user-page__info">Email: {user.email}</p>
-                        <p className="user-page__info">Phone number: {user.phoneNumber}</p>
-
-                        <button onClick={handleLogout} className="logout-btn">
-                            Logout
-                        </button>
-                    </>
-                ) : (
-                    <p>Loading information about user...</p>
-                )}
-            </div>
-
+            {isAdmin ? <UsersInfoAdmin /> : <Profile />}
             <Footer />
         </div>
     );

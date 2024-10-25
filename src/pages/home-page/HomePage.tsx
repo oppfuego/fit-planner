@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import HomePageContent from "../../components/home-page-content/HomePageContent";
 import Calendar from "../../components/calendar/Calendar";
+import {ReactComponent as Strongman} from "../../assets/strong-man.svg";
 
 
 const HomePage = () => {

@@ -152,7 +152,7 @@ const Calendar: React.FC = () => {
                 })}
             </div>
             <ModalSign isOpen={isPlanTrainingFormOpen} onClose={togglePlanTrainingForm}>
-                <PlanTrainingForm />
+                <PlanTrainingForm onClose={togglePlanTrainingForm} />
             </ModalSign>
         </div>
     );

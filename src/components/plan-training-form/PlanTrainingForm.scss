@@ -30,7 +30,7 @@
     }
   }
 
-  &__form-group-select{
+  &__form-group-select {
     width: auto;
     padding: 7px;
     font-size: 16px;
@@ -38,7 +38,7 @@
     border-radius: 6px;
   }
 
-  &__form-group-inputs{
+  &__form-group-inputs {
     width: 40px;
     padding: 10px;
     font-size: 16px;
@@ -46,7 +46,7 @@
     border-radius: 6px;
   }
 
-  &__checkbox-group{
+  &__checkbox-group {
     display: flex;
     gap: 15px;
 
@@ -58,16 +58,23 @@ span {
   margin: 0 5px 0 5px;
 }
 
-.save-button{
-    width: 530px;
-    padding: 10px;
-    margin-top: 20px;
-    font-size: 16px;
-    background-color: var(--secondary-color);
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    align-self: center;
+.btn {
+  width: 50%;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 16px;
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  float: left;
+  color: var(--primary-color);
+  transition: 0.2s;
+
+  &:hover {
+    background-color: var(--primary-color);
+    color: white;
+  }
 }
 
 .plan__form-group textarea {

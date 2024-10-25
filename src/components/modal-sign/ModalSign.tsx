@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from "react";
 import "./ModalSign.scss";
 import {IoMdClose} from "react-icons/io";
 
@@ -17,6 +17,17 @@ const ModalSign: React.FC<ModalSignProps> = ({isOpen, onClose, children}) => {
             onClose();
         }
     }
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add('overflow-hidden');
+        } else {
+            document.body.classList.remove('overflow-hidden');
+        }
+        return () => {
+            document.body.classList.remove('overflow-hidden');
+        };
+    }, [isOpen]);
 
     return isOpen ? (
         <div className="modal">

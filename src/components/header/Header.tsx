@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 import {FaBars, FaUser} from "react-icons/fa";
 import {auth} from '../../FirebaseConfig';
 
-
 const Header = () => {
 
     const [menuOpen, setMenuOpen] = useState(false);
@@ -26,11 +25,11 @@ const Header = () => {
             <div className="header__content-container">
                 <div>
                     {isLoggedIn ? (
-                        <Link to={"/home"} className="header__content-list--mod"> <Logo/>
+                        <Link to={"/"} className="header__content-list--mod"> <Logo/>
                         </Link>
 
                     ) : (
-                        <Link to={"/"} className="header__content-list--mod"> <Logo/>
+                        <Link to={"/login"} className="header__content-list--mod"> <Logo/>
                         </Link>
                     )}
                 </div>
@@ -59,7 +58,7 @@ const Header = () => {
                             <a href="#" className="header__content-list">Contacts</a>
                         </>
                     ) : (
-                        <Link to={"/home"} className="header__content-list--mod">Schedule</Link>
+                        <Link to={"/"} className="header__content-list--mod">Schedule</Link>
                     )}
                 </nav>
                 <div className={`header__login ${isLoggedIn ? 'header__login--logged-in' : ''}`}>
