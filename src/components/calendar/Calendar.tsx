@@ -1,3 +1,4 @@
+// src/components/calendar/Calendar.tsx
 import React, { useState, useEffect } from 'react';
 import './Calendar.scss';
 import { Link } from 'react-router-dom';
@@ -6,11 +7,15 @@ import { FaPlus } from "react-icons/fa6";
 import PlanTrainingForm from '../plan-training-form/PlanTrainingForm';
 import ModalSign from '../modal-sign/ModalSign';
 import { CalendarViewDataModel, CalendarItemViewDataModel } from "./CalendarModels";
+import {NotificationProps} from "../../notification/NotificationProps";
+import Notification from "../../notification/Notification";
 
 const Calendar: React.FC = () => {
     const [calendarData, setCalendarData] = useState<CalendarViewDataModel | null>(null);
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const [isPlanTrainingFormOpen, setPlanTrainingFormState] = useState(false);
+    const [notificationKey, setNotificationKey] = useState(0);
+    const [notification, setNotification] = useState<NotificationProps | null>(null);
 
     useEffect(() => {
         renderCalendar(currentMonth);
@@ -105,6 +110,11 @@ const Calendar: React.FC = () => {
         return classNames
     };
 
+    const showNotification = (notification: NotificationProps | null) => {
+        setNotificationKey(prevKey => prevKey + 1);
+        setNotification(notification);
+    };
+
     return (
         <div className="calendar">
             <div className="calendar__header">
@@ -120,11 +130,12 @@ const Calendar: React.FC = () => {
             </div>
 
             <div className="calendar__grid">
-                {calendarData.items.map((day) => {
+                {calendarData.items.map((day, index) => {
 
                     if (day.disabled) {
 
                         return (<div
+                            key={index}
                             className={getClass(day)}
                         >
                         </div>)
@@ -132,7 +143,7 @@ const Calendar: React.FC = () => {
                     } else {
 
                         return day.trainingProgramID ? (
-                            <Link to={`/training-program-page/${day.trainingProgramID}`} className={getClass(day)}>
+                            <Link key={index} to={`/training-program-page/${day.trainingProgramID}`} className={getClass(day)}>
                                 <div className="calendar__cell">
                                     <p>{day.displayDay}</p>
                                     <p>{day.displayWeekDay}</p>
@@ -140,7 +151,7 @@ const Calendar: React.FC = () => {
                                 </div>
                             </Link>
                         ) : (
-                            <div className={getClass(day)} onClick={togglePlanTrainingForm}>
+                            <div key={index} className={getClass(day)} onClick={togglePlanTrainingForm}>
                                 <div className="calendar__cell">
                                     <p>{day.displayDay}</p>
                                     <p>{day.displayWeekDay}</p>
@@ -152,8 +163,12 @@ const Calendar: React.FC = () => {
                 })}
             </div>
             <ModalSign isOpen={isPlanTrainingFormOpen} onClose={togglePlanTrainingForm}>
-                <PlanTrainingForm onClose={togglePlanTrainingForm} />
+                <PlanTrainingForm onClose={togglePlanTrainingForm} setNotification={showNotification} />
             </ModalSign>
+
+            {notification && <Notification key={notificationKey} title={notification.title} type={notification.type}
+                                           description={notification.description}
+                                           showNotification={notification.showNotification}/>}
         </div>
     );
 };

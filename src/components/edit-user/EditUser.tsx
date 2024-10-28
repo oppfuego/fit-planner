@@ -5,7 +5,7 @@ import { db, auth } from '../../FirebaseConfig';
 import './EditUser.scss';
 import { EditUserProps } from "./EditUserModels";
 
-const EditUser: React.FC<EditUserProps> = ({ user, onClose }) => {
+const EditUser: React.FC<EditUserProps> = ({ user, onClose, onRoleChange, setNotification }) => {
     const [role, setRole] = useState(user.role);
     const [isAdmin, setIsAdmin] = useState(false);
 
@@ -30,20 +30,22 @@ const EditUser: React.FC<EditUserProps> = ({ user, onClose }) => {
     };
 
     const handleSave = async () => {
-        if (!user.uid) {
-            console.error("User UID is missing!");
+        if (role === user.role) {
+            setNotification({ type: 'info', title: 'Info', description: 'The new role is the same as the current role', showNotification: true });
+            onClose();
             return;
         }
-
         try {
             await setDoc(doc(db, "Users", user.uid), {
                 ...user,
                 role
             });
-            console.log("User role updated successfully");
+            onRoleChange(user.uid, role);
+            setNotification({ type: 'success', title: 'Success', description: 'User role updated successfully', showNotification: true });
             onClose();
         } catch (error) {
-            console.error("Error updating user role: ", error);
+            setNotification({ type: 'error', title: 'Error', description: 'Error updating user role', showNotification: true });
+            onClose();
         }
     };
 

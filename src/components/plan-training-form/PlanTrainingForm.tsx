@@ -1,11 +1,17 @@
 import React from 'react';
 import './PlanTrainingForm.scss';
-import { PlanTrainingFormProps } from './PlanTrainingFormModels';
+import {PlanTrainingFormProps} from './PlanTrainingFormModels';
 
-const PlanTrainingForm: React.FC<PlanTrainingFormProps> = ({ onClose }) => {
+const PlanTrainingForm: React.FC<PlanTrainingFormProps> = ({onClose, setNotification}) => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        setNotification({
+            type: 'success',
+            title: 'Success',
+            description: 'The training plan has been successfully maintained',
+            showNotification: true
+        });
         onClose();
     };
 
@@ -26,9 +32,9 @@ const PlanTrainingForm: React.FC<PlanTrainingFormProps> = ({ onClose }) => {
                 <div className="plan__form-group">
                     <label>Training duration:</label>
                     <div>
-                        <input type="number" min="0" max="3" placeholder="00" className="plan__form-group-inputs" />
+                        <input type="number" min="0" max="3" placeholder="00" className="plan__form-group-inputs"/>
                         <span>:</span>
-                        <input type="number" min="0" max="59" placeholder="00" className="plan__form-group-inputs" />
+                        <input type="number" min="0" max="59" placeholder="00" className="plan__form-group-inputs"/>
                     </div>
                 </div>
 

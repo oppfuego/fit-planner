@@ -35,12 +35,14 @@
 
 .modal__content-close-btn {
   position: absolute;
-  top: 20px;
   right: 20px;
   background: none;
   border: none;
   font-size: 28px;
   cursor: pointer;
+  align-items: center;
+    justify-content: center;
+  text-align: center;
 }
 
 @media screen and (min-width: 602px) {
