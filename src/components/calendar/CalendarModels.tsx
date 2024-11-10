@@ -12,5 +12,5 @@ export interface CalendarItemViewDataModel {
     displayDay: number;
     displayWeekDay: string;
     disabled: boolean;
-    trainingProgramID: number | null;
+    trainingProgramID: string | null;
 }

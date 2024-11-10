@@ -1,0 +1,28 @@
+.rollback{
+  display: flex;
+  position: absolute;
+  top: 100px;
+
+  &__icon{
+    font-size: 40px;
+    cursor: pointer;
+    color: var(--secondary-color);
+    transition: 0.3s;
+  }
+
+  &__icon:hover{
+    color: var(--primary-color);
+  }
+}
+
+@media (max-width: 1002px) {
+  .rollback {
+    left: 50px;
+  }
+}
+
+.rollback-container{
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}

@@ -7,17 +7,12 @@
   background-color: #ffffff;
   height: auto;
   margin: 50px 0 50px 0;
+  padding: var(--main-padding-properties);
 
   &__top-container {
     align-items: center;
     text-align: center;
     width: 320px;
-  }
-
-  &__top-container-headline {
-    font-size: 48px;
-    font-weight: bold;
-    margin: 0;
   }
 
   &__top-container-text {
@@ -43,42 +38,59 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 230px;
   }
 
   &__input-field {
-    width: 240px;
-    padding: 10px;
+    width: 100%;
     font-size: 16px;
     border: 1px solid #cccccc;
     border-radius: 6px;
-  }
-
-  &__button {
-    width: 530px;
     padding: 10px;
-    margin-top: 20px;
-    font-size: 16px;
-    color: #000000;
-    background-color: var(--secondary-color);
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+    box-sizing: border-box;
+
+    &__input-field::placeholder {
+      color: grey;
+    }
+
   }
 
-  &__social {
+  &__checkbox {
     display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
     gap: 10px;
   }
 
-  &__social-icons {
-    background: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
+  &__checkbox-field{
+    padding: 0;
+  }
+
+  &__checkbox-label {
+    font-size: 16px;
+    color: grey;
+  }
+
+  &__button {
+    width: 480px;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 16px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
   }
 }
 
@@ -90,69 +102,7 @@
   text-align: left;
 }
 
-@media screen and (max-width: 1350px) {
-  .sign-up {
-    &__top-container {
-      width: auto;
-    }
-
-    &__inputs {
-      gap: 30px;
-    }
-
-    &__input-field {
-      width: 100%;
-      padding: 8px;
-      font-size: 14px;
-    }
-
-    &__button {
-      width: 430px;
-      font-size: 14px;
-      padding: 8px;
-    }
-
-    &__top-container-headline {
-      font-size: 36px;
-    }
-
-    &__top-container-text {
-      font-size: 14px;
-    }
-
-    &__social-icons {
-      font-size: 24px;
-    }
-  }
-}
-
-@media screen and (max-width: 1002px) {
-  .sign-up {
-    &__top-container-headline {
-      font-size: 36px;
-    }
-
-    &__top-container-text {
-      font-size: 14px;
-    }
-
-    &__input-field {
-      font-size: 14px;
-      padding: 8px;
-    }
-
-    &__button {
-      font-size: 14px;
-      padding: 8px;
-    }
-
-    &__social-icons {
-      font-size: 24px;
-    }
-  }
-}
-
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 480px) {
   .sign-up {
     &__top-container-headline {
       font-size: 24px;
@@ -167,8 +117,16 @@
       padding: 6px;
     }
 
+    &__checkbox {
+      padding: 3px;
+    }
+
+    &__checkbox-label {
+      font-size: 12px;
+    }
+
     &__button {
-      width: 380px;
+      width: 230px;
       font-size: 12px;
       padding: 6px;
     }
@@ -176,10 +134,37 @@
     &__social-icons {
       font-size: 20px;
     }
-
-
   }
 }
+
+.social {
+  display: flex;
+  gap: 20px;
+
+  &__icons {
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0;
+  }
+}
+
+.sign-link{
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: 0.2s;
+
+    &:hover {
+        color: var(--secondary-color);
+    }
+}
+
+
 
 
 

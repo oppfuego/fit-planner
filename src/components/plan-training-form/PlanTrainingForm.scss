@@ -2,11 +2,13 @@
   height: auto;
   width: 100%;
 
-  h1 {
-    font-size: 48px;
-    font-weight: bold;
-    text-align: center;
-    margin: 20px 0 20px 0;
+  &__icon{
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      color: var(--secondary-color);
+    }
   }
 
   &__form {
@@ -36,10 +38,11 @@
     font-size: 16px;
     border: 1px solid var(--secondary-color);
     border-radius: 6px;
+    flex-wrap: wrap;
   }
 
   &__form-group-inputs {
-    width: 40px;
+    width: 20%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid var(--secondary-color);
@@ -74,6 +77,11 @@ span {
   &:hover {
     background-color: var(--primary-color);
     color: white;
+  }
+
+  &--profile{
+    width: 100px;
+
   }
 }
 

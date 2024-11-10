@@ -7,6 +7,7 @@ import ModalSign from "../modal-sign/ModalSign";
 import EditUser from "../edit-user/EditUser";
 import Notification from "../../notification/Notification";
 import {NotificationProps} from '../../notification/NotificationProps';
+import Rollback from "../rollback/Rollback";
 
 const UsersInfoAdmin = () => {
     const [isEditUserFormOpen, setEditUserFormState] = useState(false);
@@ -50,7 +51,10 @@ const UsersInfoAdmin = () => {
 
     return (
         <div className="users-info">
-            <h1 className="users-info__title">All Users</h1>
+
+            <Rollback/>
+
+            <h1 className="title">All Users</h1>
 
             {users.map((user, index) => (
                 <div key={index} className="users-info__item">

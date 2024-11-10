@@ -36,3 +36,9 @@ footer {
     --main-padding-properties: 0 120px 0 120px;
     --secondary-color: #17CF97;
 }
+
+.title {
+    display: flex;
+    justify-content: center;
+    font-size: 36px;
+}

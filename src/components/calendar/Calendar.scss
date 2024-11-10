@@ -64,6 +64,11 @@
       pointer-events: none;
       border-color: #ccc;
     }
+
+    &--has-training{
+        background-color: #705f78;
+        color: white;
+    }
   }
 
   &__day.active {

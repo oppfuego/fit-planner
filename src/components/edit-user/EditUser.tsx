@@ -51,7 +51,7 @@ const EditUser: React.FC<EditUserProps> = ({ user, onClose, onRoleChange, setNot
 
     return (
         <div className="edit-user">
-            <h1 className="edit-user__title">Edit User</h1>
+            <h1 className="title">Edit User</h1>
             <section className="edit-user__info-section">
                 <p>Name: {user.firstName} {user.secondName}</p>
                 <p>Email: {user.email}</p>

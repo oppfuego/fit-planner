@@ -1,0 +1,14 @@
+.program{
+  &__title{
+    margin: 0;
+  }
+  &__content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 18px;
+  }
+  &__content p{
+    margin: 0;
+  }
+}

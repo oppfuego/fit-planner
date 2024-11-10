@@ -7,6 +7,7 @@ import {signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from '../../FirebaseConfig';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
+import Rollback from "../rollback/Rollback";
 
 const LoginForm: React.FC = () => {
 
@@ -38,8 +39,12 @@ const LoginForm: React.FC = () => {
         >
             {({isSubmitting, isValid}) => (
                 <Form className="login" noValidate>
+                    <div className="rollback-container">
+                        <Rollback/>
+                    </div>
+
                     <div className="login__top-container">
-                        <h1 className="login__top-container-headline">Sign in</h1>
+                        <h1 className="title">Sign in</h1>
                         <p className="login__top-container-text">Sign in to your account to see products catered to
                             you</p>
                     </div>
@@ -67,15 +72,13 @@ const LoginForm: React.FC = () => {
                     </button>
 
                     <p>or, sign in with</p>
-                    <div className="login__social-container">
-                        <button className="login__social-links"><AiFillGoogleCircle/></button>
-                        <button className="login__social-links"><FaFacebook/></button>
-                        <button className="login__social-links"><GrApple/></button>
+                    <div className="social">
+                        <button className="social__icons"><AiFillGoogleCircle/></button>
+                        <button className="social__icons"><FaFacebook/></button>
+                        <button className="social__icons"><GrApple/></button>
                     </div>
 
-                    <div className="login__register-link">
-                        <p>Don't have an account? <a href="/signup">Sign up</a></p>
-                    </div>
+                    <p>Don't have an account? <a href="/signup" className="sign-link">Sign up</a></p>
                 </Form>
             )}
         </Formik>

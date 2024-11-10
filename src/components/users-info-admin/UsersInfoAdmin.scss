@@ -1,11 +1,6 @@
 .users-info {
   padding: var(--main-padding-properties);
-
-  &__title {
-    font-size: 36px;
-    font-weight: 700;
-    text-align: center;
-  }
+  margin: 50px 0 50px 0;
 
   &__item {
     display: flex;
