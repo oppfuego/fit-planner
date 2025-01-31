@@ -95,7 +95,7 @@ const CoachInfo = () => {
             </ModalSign>
 
             <ModalSign isOpen={isReadyProgramFormOpen} onClose={() => toggleReadyProgramForm(null)}>
-                <ReadyProgramForm trainingPlanUid={selectedTrainingPlanUid}/>
+                <ReadyProgramForm trainingPlanUid={selectedTrainingPlanUid} onClose={toggleReadyProgramForm} setNotification={showNotification}/>
             </ModalSign>
 
             {notification && <Notification key={notificationKey} title={notification.title} type={notification.type}

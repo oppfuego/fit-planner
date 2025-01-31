@@ -24,13 +24,13 @@
   position: relative;
   width: 90%;
   max-width: 600px;
-  max-height: 90vh;
-  margin: 0 5%;
+  max-height: 95vh;
   padding: 40px;
   box-sizing: border-box;
   border-radius: 10px;
   background-color: white;
   cursor: default;
+  overflow-y: hidden;
 }
 
 .modal__content-close-btn {
@@ -60,5 +60,10 @@
   }
 }
 
+@media (min-height: 100vh) {
+  .modal__content {
+    overflow-y: auto; /* Увімкнути прокрутку для високих контентів */
+  }
+}
 
 

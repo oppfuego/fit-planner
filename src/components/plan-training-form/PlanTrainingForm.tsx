@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './PlanTrainingForm.scss';
-import { PlanTrainingFormProps } from './PlanTrainingFormModels';
-import { db } from '../../FirebaseConfig';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
-import { FaPlus } from "react-icons/fa6";
+import {PlanTrainingFormProps} from './PlanTrainingFormModels';
+import {db} from '../../FirebaseConfig';
+import {collection, getDocs, addDoc} from 'firebase/firestore';
+import {FaPlus} from "react-icons/fa6";
+import ModalSign from '../modal-sign/ModalSign';
+import ExercisesForm from "../exercises-form/ExercisesForm";
+import {IoMdClose} from "react-icons/io";
+import {CgGym} from "react-icons/cg";
 
 interface User {
     id: string;
@@ -11,16 +15,35 @@ interface User {
     secondName: string;
 }
 
-const PlanTrainingForm: React.FC<PlanTrainingFormProps> = ({ onClose, setNotification, selectedDate }) => {
+interface Exercise {
+    id: string;
+    name: string;
+}
+
+const PlanTrainingForm: React.FC<PlanTrainingFormProps> = ({onClose, setNotification, selectedDate}) => {
     const [users, setUsers] = useState<User[]>([]);
     const [selectedUserIds, setSelectedUserIds] = useState<string[][]>([[]]);
     const [trainingDate, setTrainingDate] = useState<string>('');
+    const [isExerciseFormOpen, setExerciseFormOpen] = useState(false);
+    const [selectedExercises, setSelectedExercises] = useState<Exercise[]>([]);
+
+    const toggleExerciseFormOpen = () => {
+        setExerciseFormOpen(!isExerciseFormOpen);
+    }
+
+    const handleSelectExercises = (exercises: any[]) => {
+        setSelectedExercises(prevSelected => {
+            const newExercises = exercises.filter(exercise => !prevSelected.some(prevExercise => prevExercise.id === exercise.id));
+            return [...prevSelected, ...newExercises];
+        });
+        toggleExerciseFormOpen();
+    };
 
     useEffect(() => {
         const fetchUsers = async () => {
             const usersQuery = collection(db, 'Users');
             const usersGet = await getDocs(usersQuery);
-            const usersList = usersGet.docs.map(doc => ({ id: doc.id, ...doc.data() } as User));
+            const usersList = usersGet.docs.map(doc => ({id: doc.id, ...doc.data()} as User));
             setUsers(usersList);
         };
 
@@ -43,6 +66,15 @@ const PlanTrainingForm: React.FC<PlanTrainingFormProps> = ({ onClose, setNotific
         setSelectedUserIds(newSelectedUserIds);
     };
 
+    const handleRemoveUserDropdown = (index: number) => {
+        const newSelectedUserIds = selectedUserIds.filter((_, i) => i !== index);
+        setSelectedUserIds(newSelectedUserIds);
+    };
+
+    const handleRemoveExercise = (index: number) => {
+        setSelectedExercises(prevSelected => prevSelected.filter((_, i) => i !== index));
+    };
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -62,20 +94,20 @@ const PlanTrainingForm: React.FC<PlanTrainingFormProps> = ({ onClose, setNotific
                 description,
                 clientIds,
                 trainingDate,
+                exercises: selectedExercises.map(exercise => exercise.id),
             });
 
-            const clientPromises = clientIds.map(clientId =>
-                addDoc(collection(db, "ClientTrainingPrograms"), {
-                    UserId: clientId,
-                    TrainingPlanId: trainingPlanRef.id,
-                })
-                    .then(() => {
-                        console.log(`Successfully added clientId: ${clientId}`);
-                    })
-                    .catch(error => {
-                        console.error(`Error adding clientId: ${clientId}`, error);
-                    })
-            );
+            const clientPromises = clientIds.map(async (clientId) => {
+                try {
+                    await addDoc(collection(db, "ClientTrainingPrograms"), {
+                        UserId: clientId,
+                        TrainingPlanId: trainingPlanRef.id,
+                    });
+                    console.log(`Successfully added clientId: ${clientId}`);
+                } catch (error) {
+                    console.error(`Error adding clientId: ${clientId}`, error);
+                }
+            });
 
             await Promise.all(clientPromises);
 
@@ -143,15 +175,32 @@ const PlanTrainingForm: React.FC<PlanTrainingFormProps> = ({ onClose, setNotific
                 </div>
 
                 <div className="plan__form-group">
-                <label>Client(s):</label>
+                    <label>Selected Exercises:</label>
+                    <button className="btn btn--plan" type="button" onClick={toggleExerciseFormOpen}>Add exercises
+                    </button>
+                    <ul>
+                        {selectedExercises.map((exercise, index) => (
+                            <li key={index} className="plan__form-group-exercise">
+                                <CgGym className="plan__icon plan__icon--form-group"/> {exercise.name}
+                                <IoMdClose className="plan__icon" onClick={() => handleRemoveExercise(index)}/>
+
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className="plan__form-group">
+                    <label>Client(s):</label>
 
                     {selectedUserIds.map((_, index) => (
-                        <select key={index} className="plan__form-group-select"
-                                onChange={(e) => handleUserSelection(e, index)}>
-                            {users.map(user => (
-                                <option key={user.id} value={user.id}>{user.firstName} {user.secondName}</option>
-                            ))}
-                        </select>
+                        <div key={index} className="plan__form-group-user">
+                            <select className="plan__form-group-select"
+                                    onChange={(e) => handleUserSelection(e, index)}>
+                                {users.map(user => (
+                                    <option key={user.id} value={user.id}>{user.firstName} {user.secondName}</option>
+                                ))}
+                            </select>
+                            <IoMdClose className="plan__icon" onClick={() => handleRemoveUserDropdown(index)}/>
+                        </div>
                     ))}
 
                     <FaPlus className="plan__icon" onClick={handleAddUserDropdown}/>
@@ -160,6 +209,10 @@ const PlanTrainingForm: React.FC<PlanTrainingFormProps> = ({ onClose, setNotific
                 <button type="submit" className="btn">Save the plan</button>
 
             </form>
+
+            <ModalSign isOpen={isExerciseFormOpen} onClose={() => setExerciseFormOpen(false)}>
+                <ExercisesForm onSelectExercises={handleSelectExercises} initialSelectedExercises={selectedExercises}/>
+            </ModalSign>
         </div>
     );
 };

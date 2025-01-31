@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+Cuneiform&display=swap');
+
+.hero-section {
+  position: relative;
+  background-image: url("../../assets/manBarbell.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 70vh;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  z-index: 1;
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    gap: 30px;
+  }
+
+  &__title {
+    font-size: 70px;
+    position: relative;
+    z-index: 2;
+    text-transform: uppercase;
+    margin: 0;
+    background: linear-gradient(90deg, #ffffff, #a6a6a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: 60%;
+    line-height: 1.1;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  &__description {
+    font-size: 28px;
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    background: linear-gradient(90deg, #a6a6a6, #ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 500;
+    font-family: 'Noto Sans Cuneiform', sans-serif;
+  }
+
+  &__link {
+    position: relative;
+    z-index: 2;
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    background: linear-gradient(90deg, #ffffff, var(--secondary-color));
+    background-size: 200% 100%;
+    background-position: left;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+
+    &:hover {
+      background-position: right;
+      border: 2px solid var(--secondary-color);
+    }
+  }
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+  z-index: 1;
+}
+

@@ -1,0 +1,40 @@
+.about-us {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color);
+  padding: var(--main-padding-properties);
+  box-shadow: 0 -5px 50px var(--secondary-color);
+  z-index: 1000;
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px 0;
+    position: relative;
+  }
+
+  &__title {
+    text-transform: uppercase;
+    color: #ffffff;
+    font-size: 50px;
+    margin: 0;
+    z-index: 1;
+    text-align: left;
+    width: 100%;
+    background: linear-gradient(90deg, #ffffff, var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &__text {
+    color: white;
+    font-size: 24px;
+    z-index: 2;
+    background: linear-gradient(90deg, #ffffff, #a6a6a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import "./Header.scss";
-import { ReactComponent as Logo } from "../../assets/Logo.svg";
-import { Link } from "react-router-dom";
-import { FaBars, FaUser } from "react-icons/fa";
-import { auth, db } from '../../FirebaseConfig';
-import { doc, getDoc } from "firebase/firestore";
-import { CgGym } from "react-icons/cg";
+import {ReactComponent as Logo} from "../../assets/Logo.svg";
+import {Link} from "react-router-dom";
+import {FaBars, FaUser} from "react-icons/fa";
+import {auth, db} from '../../FirebaseConfig';
+import {doc, getDoc} from "firebase/firestore";
+import {CgGym} from "react-icons/cg";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -36,55 +36,52 @@ const Header = () => {
         <div className="header">
             <div className="header__content-container">
                 <div>
-                    {isLoggedIn ? (
-                        <Link to={"/"} className="header__content-list--mod">
-                            <Logo />
-                        </Link>
-                    ) : (
-                        <Link to={"/login"} className="header__content-list--mod">
-                            <Logo />
-                        </Link>
-                    )}
+                    <Link to={"/"} className="header__logo">
+                        <Logo/>
+                    </Link>
                 </div>
                 <div className="header__menu">
                     <span className="header__menu-icon" onClick={toggleMenu}>
-                        <FaBars />
+                        <FaBars/>
                     </span>
                     {isLoggedIn ? (
                         <Link to="/info-user-page" className="header__menu-icon">
-                            <FaUser />
+                            <FaUser/>
                         </Link>
                     ) : (
                         <Link to="/login" className="header__menu-icon">
-                            <FaUser />
+                            <FaUser/>
                         </Link>
                     )}
                 </div>
                 <nav className={`header__content ${menuOpen ? 'header__content--open' : ''}`}>
-                    {isLoggedIn ? (
+                    <Link to={"/about"} className="header__content-list">About Us</Link>
+                    <Link to={"/services"} className="header__content-list">Services</Link>
+                    <Link to={"/trainers"} className="header__content-list">Our Trainers</Link>
+                    <Link to={"/contacts"} className="header__content-list">Contacts</Link>
+
+                    {isLoggedIn && (
                         <>
-                            <a href="#" className="header__content-list">About Us</a>
-                            <a href="#" className="header__content-list">Services</a>
-                            <a href="#" className="header__content-list">Our Trainers</a>
-                            <a href="#" className="header__content-list">Contacts</a>
+                            <Link to={"/promo-subscription-page"} className="header__content-list--mod">Promo</Link>
+                            <Link to={"/schedule"} className="header__content-list--mod">Schedule</Link>
                         </>
-                    ) : (
-                        <Link to={"/"} className="header__content-list--mod">Schedule</Link>
                     )}
+
+
                 </nav>
                 <div className={`header__login ${isLoggedIn ? 'header__login--logged-in' : ''}`}>
                     {isLoggedIn ? (
                         <div className="header__login-icons">
                             <Link to="/info-user-page" className="header__profile-icon">
-                                <FaUser />
+                                <FaUser/>
                             </Link>
 
                             <Link to="/coach-page" className="header__profile-icon">
-                                {userRole === "Coach" && <CgGym />}
+                                {userRole === "Coach" && <CgGym/>}
                             </Link>
                         </div>
 
-                        ) : (
+                    ) : (
                         <>
                             <Link to="/login" className="header__login-button">
                                 Log in

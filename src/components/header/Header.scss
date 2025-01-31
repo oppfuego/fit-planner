@@ -16,8 +16,9 @@ a {
     width: 100%;
     padding: var(--main-padding-properties);
     height: 80px;
-
   }
+
+
 
   &__menu {
     display: flex;
@@ -34,34 +35,38 @@ a {
 
   &__content {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    max-width: 405px;
+    text-align: center;
+    justify-content: center;
     width: 100%;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 400;
     transition: max-height 0.3s ease;
+    gap: 20px;
 
     &.header__content--open {
       display: flex;
       flex-direction: column;
       background-color: var(--primary-color);
-      position: absolute;
+      position: fixed;
+      align-items: flex-start;
       top: 70px;
-      right: 12.9%;
-      width: 30%;
-      padding: 1rem;
+      width: 100%;
+      height: 100vh;
+      padding: 20px 50px;
+      left: 0;
       gap: 1rem;
-      border: 1px solid #17CF97;
-      border-radius: 8px;
+      border-top: 1px solid #17CF97;
       z-index: 2;
+      box-sizing: border-box;
+      text-align: left;
+      justify-content: flex-start;
     }
   }
 
   &__content-list--mod {
     display: flex;
     justify-content: center;
-    width: 100%;
     color: white;
     transition: 0.1s;
 
@@ -97,12 +102,11 @@ a {
   &__login-button {
     background: none;
     color: white;
-    border: none;
     width: fit-content;
     cursor: pointer;
     padding: 10px 20px 10px 20px;
     border-radius: 8px;
-    transition: 0.1s ease-in-out;
+    transition: 0.3s ease-in-out;
     font-size: 14px;
     font-weight: 400;
 
@@ -114,9 +118,10 @@ a {
     &--sign-up {
       background: #17CF97;
       color: black;
+      border: none;
 
       &:hover {
-        background: #17CF97;
+        background: #588fc6;
       }
     }
   }
@@ -135,7 +140,7 @@ a {
 }
 
 
-@media (max-width: 1002px) {
+@media (max-width:1440px) {
   .header {
     height: 70px;
     display: flex;
@@ -154,7 +159,7 @@ a {
   }
 }
 
-@media (max-width: 882px) {
+@media (max-width: 1024px) {
   .header {
     padding: 0;
 
@@ -179,9 +184,13 @@ a {
   }
 }
 
-@media (max-width: 602px) {
+@media (max-width: 480px) {
   .header__content-container {
     gap: 2rem;
+  }
+
+  .header__logo {
+    width: 150px;
   }
 }
 

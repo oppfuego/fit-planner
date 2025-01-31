@@ -5,9 +5,17 @@
   &__icon{
     cursor: pointer;
     transition: 0.3s;
+    align-self: center;
+    font-size: 16px;
+
 
     &:hover {
       color: var(--secondary-color);
+    }
+
+    &--form-group{
+      font-size: 20px;
+      cursor: inherit;
     }
   }
 
@@ -24,12 +32,25 @@
     padding: 10px 0 0 0;
     font-size: 16px;
     align-items: center;
+    height: auto;
+    width: 100%;
+    flex-wrap: wrap;
 
     &--checkbox-section {
       display: flex;
       gap: 10px;
       flex-direction: column;
     }
+  }
+
+  &__form-group ul{
+    padding: 0;
+  }
+
+  &__form-group-exercise{
+    display: flex;
+    gap: 20px;
+    font-size: 16px;
   }
 
   &__form-group-select {
@@ -39,6 +60,7 @@
     border: 1px solid var(--secondary-color);
     border-radius: 6px;
     flex-wrap: wrap;
+    align-items: center;
   }
 
   &__form-group-inputs {
@@ -73,6 +95,10 @@ span {
   float: left;
   color: var(--primary-color);
   transition: 0.2s;
+
+  &--plan{
+    margin-top: 0;
+  }
 
   &:hover {
     background-color: var(--primary-color);

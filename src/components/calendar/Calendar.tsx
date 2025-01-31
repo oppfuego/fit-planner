@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import './Calendar.scss';
-import { FaEye } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa6";
-import { CalendarItemViewDataModel, CalendarViewDataModel } from "./CalendarModels";
+import {FaEye} from "react-icons/fa";
+import {FaPlus} from "react-icons/fa6";
+import {CalendarItemViewDataModel, CalendarViewDataModel} from "./CalendarModels";
 import PlanTrainingForm from '../plan-training-form/PlanTrainingForm';
 import ReadyProgramForm from '../ready-program-form/ReadyProgramForm';
 import ModalSign from '../modal-sign/ModalSign';
-import { NotificationProps } from "../../notification/NotificationProps";
+import {NotificationProps} from "../../notification/NotificationProps";
 import Notification from "../../notification/Notification";
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from '../../FirebaseConfig';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import {collection, getDocs, query, where} from 'firebase/firestore';
+import {db} from '../../FirebaseConfig';
+import {getAuth, onAuthStateChanged} from 'firebase/auth';
 
 const Calendar: React.FC = () => {
     const [calendarData, setCalendarData] = useState<CalendarViewDataModel | null>(null);
     const [currentMonth, setCurrentMonth] = useState(new Date());
-    const [isPlanTrainingFormOpen, setPlanTrainingFormOpen] = useState(false);
+    const [isFormOpen, setFormOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
     const [userTrainingPlans, setUserTrainingPlans] = useState<any[]>([]);
     const [isDataLoaded, setIsDataLoaded] = useState(false);
@@ -136,9 +136,9 @@ const Calendar: React.FC = () => {
         setCurrentMonth(nextMonth);
     };
 
-    const togglePlanTrainingForm = (date?: Date) => {
+    const toggleForm = (date?: Date) => {
         if (date) setSelectedDate(date);
-        setPlanTrainingFormOpen(!isPlanTrainingFormOpen);
+        setFormOpen(!isFormOpen);
     };
 
     const openReadyProgramForm = (trainingProgramID: string) => {
@@ -160,7 +160,7 @@ const Calendar: React.FC = () => {
             if (plan) {
                 openReadyProgramForm(plan.uid);
             } else {
-                togglePlanTrainingForm(day.date);
+                toggleForm(day.date);
             }
         }
     };
@@ -218,13 +218,13 @@ const Calendar: React.FC = () => {
 
             {selectedTrainingPlanId && (
                 <ModalSign isOpen={true} onClose={() => setSelectedTrainingPlanId(null)}>
-                    <ReadyProgramForm trainingPlanUid={selectedTrainingPlanId}/>
+                    <ReadyProgramForm trainingPlanUid={selectedTrainingPlanId} onClose={toggleForm} setNotification={showNotification}/>
                 </ModalSign>
             )}
 
-            <ModalSign isOpen={isPlanTrainingFormOpen} onClose={togglePlanTrainingForm}>
+            <ModalSign isOpen={isFormOpen} onClose={toggleForm}>
                 <PlanTrainingForm
-                    onClose={togglePlanTrainingForm}
+                    onClose={toggleForm}
                     setNotification={showNotification}
                     selectedDate={selectedDate}
                 />

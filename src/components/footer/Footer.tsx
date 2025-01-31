@@ -17,12 +17,7 @@ const Footer = () => {
                     </Link>
                     <section className="footer__top-content">
                         <p className="footer__top-content-text">Join Us</p>
-                        <nav className="social">
-                            <a href="#" className="social__links"><FaSquareInstagram/></a>
-                            <a href="#" className="social__links"><FaSquareFacebook/></a>
-                            <a href="#" className="social__links"><FaSquareTwitter/></a>
-                            <a href="#" className="social__links"><FaSquareYoutube/></a>
-                        </nav>
+
                     </section>
                 </div>
                 <hr className="dividing"/>

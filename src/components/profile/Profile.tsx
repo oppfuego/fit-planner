@@ -8,6 +8,7 @@ import Rollback from '../rollback/Rollback';
 const Profile = () => {
     const [user, setUser] = useState<any>(null);
     const [loading, setLoading] = useState(true);
+    const [subscriptionName, setSubscriptionName] = useState('');
 
     const [isEditingFirstName, setIsEditingFirstName] = useState(false);
     const [isEditingSecondName, setIsEditingSecondName] = useState(false);
@@ -31,6 +32,13 @@ const Profile = () => {
                     setSecondName(userData.secondName);
                     setEmail(userData.email);
                     setPhoneNumber(userData.phoneNumber);
+
+                    if (userData.subscriptionId) {
+                        const subscriptionDoc = await getDoc(doc(db, "Subscription", userData.subscriptionId));
+                        if (subscriptionDoc.exists()) {
+                            setSubscriptionName(subscriptionDoc.data().name);
+                        }
+                    }
                 }
             }
             setLoading(false);
@@ -199,6 +207,7 @@ const Profile = () => {
 
                     <p className="user-page__info">Gender: {user.gender}</p>
                     <p className="user-page__info">Role: {user.role}</p>
+                    <p className="user-page__info">Subscription: {subscriptionName}</p>
 
                     <button onClick={handleLogout} className="logout-btn">
                         Logout

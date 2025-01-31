@@ -1,15 +1,17 @@
 import React from 'react';
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import Calendar from "../../components/calendar/Calendar";
+import HeroSection from "../../components/hero-section/HeroSection";
+import AboutUs from "../../components/about-us/AboutUs";
+import BenefitsSection from "../../components/benefit-section/BenefitsSection";
 
 const HomePage = () => {
     return (
         <div id="root">
             <Header/>
-            <main>
-                <Calendar/>
-            </main>
+            <HeroSection/>
+            {/*<BenefitsSection/>*/}
+            {/*<AboutUs/>*/}
             <Footer/>
         </div>
     );

@@ -25,7 +25,7 @@ const LoginForm: React.FC = () => {
             const {email, password} = values;
             await signInWithEmailAndPassword(auth, email, password);
             console.log("User logged in successfully");
-            window.location.href = "/";
+            window.location.href = "/schedule";
         } catch (error) {
             console.error(error);
         }

@@ -1,14 +1,54 @@
-.program{
-  &__title{
+.program {
+  &__title {
     margin: 0;
   }
-  &__content{
+  &__content {
     display: flex;
     flex-direction: column;
     gap: 20px;
     font-size: 18px;
   }
-  &__content p{
+  &__content p {
     margin: 0;
+  }
+  &__exercise-wrapper {
+    margin-bottom: 10px;
+  }
+  &__exercise {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  &__status-exercise {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+  }
+
+  &__table{}
+}
+
+.exercise-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+
+  th, td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 5px;
+  }
+
+  th {
+    background-color: #f9f9f9;
+  }
+
+  input {
+    width: 100%;
+    text-align: center;
+    border: none;
+    outline: none;
   }
 }
