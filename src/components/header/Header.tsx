@@ -9,12 +9,19 @@ import {CgGym} from "react-icons/cg";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [userRole, setUserRole] = useState<string | null>(null);
 
     const toggleMenu = () => setMenuOpen(!menuOpen);
 
     useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            const { isLoggedIn, userRole } = JSON.parse(storedUser);
+            setIsLoggedIn(isLoggedIn);
+            setUserRole(userRole);
+        }
+
         const unsubscribe = auth.onAuthStateChanged(async (user) => {
             if (user) {
                 setIsLoggedIn(true);
@@ -23,10 +30,12 @@ const Header = () => {
                 if (userDoc.exists()) {
                     const userData = userDoc.data();
                     setUserRole(userData.role);
+                    localStorage.setItem('user', JSON.stringify({ isLoggedIn: true, userRole: userData.role }));
                 }
             } else {
                 setIsLoggedIn(false);
                 setUserRole(null);
+                localStorage.removeItem('user');
             }
         });
         return () => unsubscribe();
@@ -66,8 +75,6 @@ const Header = () => {
                             <Link to={"/schedule"} className="header__content-list--mod">Schedule</Link>
                         </>
                     )}
-
-
                 </nav>
                 <div className={`header__login ${isLoggedIn ? 'header__login--logged-in' : ''}`}>
                     {isLoggedIn ? (
@@ -80,7 +87,6 @@ const Header = () => {
                                 {userRole === "Coach" && <CgGym/>}
                             </Link>
                         </div>
-
                     ) : (
                         <>
                             <Link to="/login" className="header__login-button">

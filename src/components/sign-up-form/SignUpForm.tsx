@@ -60,7 +60,7 @@ const SignUpForm = () => {
                     role: checkCoach ? UserRoles.Coach : UserRoles.User
                 });
                 console.log("User registered successfully");
-                window.location.href = "/login";
+                window.location.href = "/";
             }
         } catch (error) {
             console.error(error);

@@ -25,6 +25,15 @@ const Calendar: React.FC = () => {
     const [notification, setNotification] = useState<NotificationProps | null>(null);
 
     useEffect(() => {
+        const cachedMonth = localStorage.getItem('currentMonth');
+        const cachedPlans = localStorage.getItem('userTrainingPlans');
+        if (cachedMonth) {
+            setCurrentMonth(new Date(cachedMonth));
+        }
+        if (cachedPlans) {
+            setUserTrainingPlans(JSON.parse(cachedPlans));
+        }
+
         const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
             if (user) {
                 setCurrentUser(user);
@@ -54,6 +63,7 @@ const Calendar: React.FC = () => {
                     uid: doc.id
                 }));
                 setUserTrainingPlans(plans);
+                localStorage.setItem('userTrainingPlans', JSON.stringify(plans));
             }
         } catch (error) {
             console.error('Error fetching user training plans:', error);
@@ -120,6 +130,7 @@ const Calendar: React.FC = () => {
             displayYear: selectedMonth.getFullYear(),
             items
         });
+        localStorage.setItem('currentMonth', selectedMonth.toISOString());
     };
 
     useEffect(() => {
