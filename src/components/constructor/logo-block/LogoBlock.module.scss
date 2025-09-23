@@ -1,0 +1,12 @@
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 0;
+
+  img {
+    object-fit: contain;
+    max-width: 100%;
+    height: auto;
+  }
+}

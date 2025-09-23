@@ -1,0 +1,39 @@
+.textBlock {
+  padding: 1rem;
+  line-height: 1.6;
+
+
+}
+
+.title {
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-inverse);
+
+  @media screen and (max-width: 1028px) {
+    font-size: 1rem;
+  }
+}
+
+.description {
+  margin-bottom: 1rem;
+  color: var(--text-inverse);
+  text-align: justify;
+}
+
+.center {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.bulletList {
+  list-style: disc inside;
+  margin-bottom: 0.5rem;
+  color: var(--text-inverse);
+}
+
+.descriptionWithBullets {
+  margin-top: 1rem;
+}

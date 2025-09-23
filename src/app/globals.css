@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body {
+    max-width: 100vw;
+    font-family: var(--font-family);
+    background-color: #0a2540;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+:root {
+    /* Основні */
+    --primary-color: #0a2540;       /* головний темний (синьо-фіолетовий) */
+    --secondary-color: #17CF97;     /* акцент бірюзово-зелений */
+    --tertiary-color: #134074;      /* трохи світліший відтінок primary */
+    --quaternary-color: #E6F9F3;    /* дуже світлий зелено-бірюзовий для фонів */
+
+    /* Фон та поверхні */
+    --background-light: #FFFFFF;    /* базовий світлий фон */
+    --background-dark: #0a2540;     /* темна тема на основі primary */
+    --surface-color: #FFFFFF;       /* поверхні (карточки, блоки) */
+    --surface-muted: #F3F4F6;       /* приглушений фон секцій */
+
+    /* Тексти */
+    --text-primary: #111827;        /* майже чорний */
+    --text-secondary: #374151;      /* темно-сірий */
+    --text-muted: #9CA3AF;          /* сірий */
+    --text-inverse: #FFFFFF;        /* білий текст на темному фоні */
+    --text-accent: #17CF97;         /* акцентований бірюзовий текст */
+
+    /* Статуси */
+    --success-color: #17CF97;       /* зелено-бірюзовий (з secondary) */
+    --warning-color: #FBBF24;       /* теплий жовтий */
+    --error-color: #EF4444;         /* насичений червоний */
+    --info-color: #3B82F6;          /* синій як додатковий акцент */
+
+    /* Інтерактивні */
+    --button-hover: #134074;        /* темніший синьо-фіолетовий */
+    --link-color: #17CF97;          /* посилання бірюзові */
+    --link-hover: #0E9F6E;          /* темніший зелено-бірюзовий */
+
+    /* Система */
+    --border-color: #E5E7EB;        /* світло-сірі бордери */
+    --shadow-color: rgba(0, 0, 0, 0.08);
+
+    --font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+
+

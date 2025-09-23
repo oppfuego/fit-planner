@@ -1,0 +1,30 @@
+.strip {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  color: #fff;
+  padding: 0.8rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border-radius: 6px;
+}
+
+.track {
+  display: inline-block;
+  animation: scroll 20s linear infinite;
+}
+
+.item {
+  display: inline-block;
+  margin: 0 2rem;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

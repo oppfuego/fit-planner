@@ -1,0 +1,113 @@
+.wrapper {
+  display: flex;
+  min-height: 90vh;
+  width: 100%;
+}
+
+.leftSide {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  min-height: 300px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45); // затемнення
+    z-index: 1;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+
+.rightSide {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 40px;
+
+  .formContainer {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 20px; /* повернув округлені кути */
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    transition: box-shadow 0.25s ease;
+
+    &:hover {
+      box-shadow: 0 14px 38px rgba(0, 0, 0, 0.16);
+    }
+  }
+
+  .title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .formContent {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    button {
+      margin-top: 16px;
+      border-radius: 12px !important; /* теж округла */
+      font-weight: 700 !important;
+      font-size: 1rem !important;
+      padding: 14px !important;
+      background: var(--primary-color);
+      color: #fff;
+      transition: all 0.25s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        background: var(--secondary-color);
+        color: var(--primary-color);
+      }
+    }
+  }
+}
+
+/* 📱 адаптив */
+@media (max-width: 1024px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .leftSide {
+    min-height: 240px;
+  }
+
+  .rightSide {
+    padding: 20px;
+  }
+}

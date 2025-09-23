@@ -1,0 +1,30 @@
+.wrapper {
+  padding: 32px;
+  background: #f7f8fa;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  min-height: 75dvh;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+  align-content: center;
+    align-items: center;
+
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+  margin: 0 auto;
+}
+
+.widgets {
+  /* Add grid or flex for widgets */
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  min-height: 200px;
+}
