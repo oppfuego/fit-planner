@@ -46,19 +46,14 @@ export const footerContent = {
         },
     ],
     contact: {
-        email: "info@tech-text.co.uk",
+        email: "info@fitplaner.co.uk",
         phone: "+1 234 567 890",
-        address: "20 Wenlock Road, London, England, N1 7GU",
+        address: "Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF",
     },
 
     legal: {
-        companyName: "JUNGLE SAPPHIRE LTD",
-        companyNumber: "15545389",
-        addressLines: [
-            "20 Wenlock Road",
-            "London, England",
-            "N1 7GU",
-        ],
+        companyName: "TECHGATE LIMITED",
+        companyNumber: "15742364",
     },
     socials: [
         { label: "Twitter", href: "https://x.com/...", icon: FaTwitter },

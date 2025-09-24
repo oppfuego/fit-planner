@@ -31,7 +31,6 @@ const Card: React.FC<CardProps> = ({ image, title, description, buttonText, butt
             {buttonText && buttonLink && (
                 <a
                     href={buttonLink}
-                    target="_blank"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                 >
