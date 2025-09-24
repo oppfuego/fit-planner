@@ -27,7 +27,7 @@ export const footerContent = {
     logo: { src: media.logo_black.src, alt: "Site Logo", href: "/" },
     columns: [
         {
-            title: "Details",
+            title: "Navigate",
             links: [
                 { label: "About Us", href: "/about-us" },
                 { label: "Pricing", href: "/pricing" },
@@ -36,7 +36,7 @@ export const footerContent = {
             ],
         },
         {
-            title: "Privacy & Terms",
+            title: "Legal",
             links: [
                 { label: "Terms & Conditions", href: "/terms-and-conditions" },
                 { label: "Cookie Policy", href: "/cookie-policy" },
@@ -54,6 +54,7 @@ export const footerContent = {
     legal: {
         companyName: "TECHGATE LIMITED",
         companyNumber: "15742364",
+        address: "Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF",
     },
     socials: [
         { label: "Twitter", href: "https://x.com/...", icon: FaTwitter },
@@ -61,3 +62,4 @@ export const footerContent = {
         { label: "LinkedIn", href: "https://linkedin.com/...", icon: FaLinkedin },
     ],
 };
+

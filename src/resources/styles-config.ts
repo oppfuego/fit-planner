@@ -96,8 +96,8 @@ export const footerStyles = {
     grid: { colsXL: 1, colsLG: 2, colsMD: 2, colsSM: 1 },
     font: { size: 18, legalSize: 24 },
     sizes: {
-        titles: { xl: 22, lg: 22, md: 20, sm: 18 },
-        links: { xl: 20, lg: 18, md: 18, sm: 16 },
+        titles: { xl: 20, lg: 18, md: 18, sm: 16 },
+        links: { xl: 18, lg: 18, md: 18, sm: 16 },
         icons: { xl: 26, lg: 24, md: 22, sm: 18 },
     },
     radius: "0",

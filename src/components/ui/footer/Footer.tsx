@@ -46,9 +46,9 @@ const Footer: React.FC = () => {
     const { logo, columns, contact, socials, legal } = footerContent;
 
     const LegalAddress = () =>
-        legal?.addressLines?.length ? (
+        Array.isArray(legal?.addressLines) && legal.addressLines.length ? (
             <address className={styles["footer__legal-address"]}>
-                {legal.addressLines.map((line) => (
+                {legal.addressLines.map((line: string) => (
                     <div key={line}>{line}</div>
                 ))}
             </address>
@@ -160,7 +160,7 @@ const Footer: React.FC = () => {
 
                         {legal && (
                             <div className={styles["footer__column"]}>
-                                <div className={styles["footer__column-title"]}>Legal</div>
+                                <div className={styles["footer__column-title"]}>Company</div>
                                 <LegalBlock />
                             </div>
                         )}
@@ -285,60 +285,84 @@ const Footer: React.FC = () => {
                                 </div>
                             </div>
                         ))}
+
+                        {/* Company */}
+                        {/* Company */}
                         {legal && (
                             <div className={styles["footer__mega-col"]}>
-                                <div className={styles["footer__column-title"]}>Legal</div>
-                                <LegalBlock />
-                                <div className={styles.payments}>
-                                    <div className={styles.paymentsContent}>
-                                        <FaCcVisa className={styles.paymentIcon} />
-                                        <FaCcMastercard className={styles.paymentIcon} />
-                                        <FaCcAmex className={styles.paymentIcon} />
-                                        <FaGooglePay className={styles.paymentIcon} />
-                                        <FaApplePay className={styles.paymentIcon} />
+                                <div className={styles["footer__column-title"]}>Company</div>
+                                <div className={styles["footer__legal"]}>
+                                    <div className={styles["footer__legal-line"]}>
+                                        <span className={styles["footer__legal-label"]}>Company:</span>{" "}
+                                        <strong>{legal.companyName}</strong>
                                     </div>
+                                    {legal.companyNumber && (
+                                        <div className={styles["footer__legal-line"]}>
+                                            <span className={styles["footer__legal-label"]}>Company number:</span>{" "}
+                                            <span>{legal.companyNumber}</span>
+                                        </div>
+                                    )}
+                                    {legal.address && (
+                                        <address className={styles["footer__legal-address"]}>
+                                            {legal.address}
+                                        </address>
+                                    )}
+                                    {contact.email && (
+                                        <div className={styles["footer__contact-item"]}>
+                                            <strong>Email:</strong>{" "}
+                                            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                                        </div>
+                                    )}
+                                    {contact.phone && (
+                                        <div className={styles["footer__contact-item"]}>
+                                            <strong>Phone:</strong>{" "}
+                                            <a href={`tel:${contact.phone}`}>{contact.phone}</a>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         )}
-                    </div>
-                    <div className={styles["footer__mega-bottom"]}>
-                        <div className={styles["footer__contact-row"]}>
-                            {contact.address && <div>{contact.address}</div>}
-                            {contact.email && (
-                                <div>
-                                    <a href={`mailto:${contact.email}`}>{contact.email}</a>
+
+
+                        {/* Payment Methods */}
+                        <div className={styles["footer__mega-col"]}>
+                            <div className={styles["footer__column-title"]}>Payment Methods</div>
+                            <div className={styles.payments}>
+                                <div className={styles.paymentsContent}>
+                                    <FaCcVisa className={styles.paymentIcon} />
+                                    <FaCcMastercard className={styles.paymentIcon} />
+                                    <FaCcAmex className={styles.paymentIcon} />
+                                    <FaGooglePay className={styles.paymentIcon} />
+                                    <FaApplePay className={styles.paymentIcon} />
                                 </div>
-                            )}
-                            {contact.phone && (
-                                <div>
-                                    <a href={`tel:${contact.phone}`}>{contact.phone}</a>
-                                </div>
-                            )}
+                            </div>
                         </div>
                     </div>
-                    {!!socials?.length && (
-                        <div className={styles["footer__mega-socials"]}>
-                            {socials.map((s) => {
-                                const Icon = s.icon;
-                                const isExternal = !s.href?.startsWith("/");
-                                return (
-                                    <SmartLink
-                                        key={s.label}
-                                        href={s.href}
-                                        className={styles["footer__social-link"]}
-                                        ariaLabel={s.label}
-                                        title={s.label}
-                                        target={isExternal ? "_blank" : undefined}
-                                        rel={isExternal ? "noopener noreferrer" : undefined}
-                                    >
-                                        <Icon size={footerStyles.sizes?.icons?.xl ?? 24} />
-                                    </SmartLink>
-                                );
-                            })}
-                        </div>
-                    )}
+
+                    {/*{!!socials?.length && (*/}
+                    {/*    <div className={styles["footer__mega-socials"]}>*/}
+                    {/*        {socials.map((s) => {*/}
+                    {/*            const Icon = s.icon;*/}
+                    {/*            const isExternal = !s.href?.startsWith("/");*/}
+                    {/*            return (*/}
+                    {/*                <SmartLink*/}
+                    {/*                    key={s.label}*/}
+                    {/*                    href={s.href}*/}
+                    {/*                    className={styles["footer__social-link"]}*/}
+                    {/*                    ariaLabel={s.label}*/}
+                    {/*                    title={s.label}*/}
+                    {/*                    target={isExternal ? "_blank" : undefined}*/}
+                    {/*                    rel={isExternal ? "noopener noreferrer" : undefined}*/}
+                    {/*                >*/}
+                    {/*                    <Icon size={footerStyles.sizes?.icons?.xl ?? 24} />*/}
+                    {/*                </SmartLink>*/}
+                    {/*            );*/}
+                    {/*        })}*/}
+                    {/*    </div>*/}
+                    {/*)}*/}
                 </div>
             )}
+
 
             <div className={styles["footer__rights"]}>
                 © {new Date().getFullYear()} All rights reserved.
