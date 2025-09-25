@@ -62,4 +62,3 @@ export const footerContent = {
         { label: "LinkedIn", href: "https://linkedin.com/...", icon: FaLinkedin },
     ],
 };
-

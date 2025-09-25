@@ -36,7 +36,7 @@ const schema: PageSchema = {
             right: {
                 type: "media",
                 mediaType: "image",
-                src: "image2",
+                src: "image6",
                 alt: "FitPlanner app preview",
                 width: "100%",
                 height: "300px",

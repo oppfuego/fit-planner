@@ -30,8 +30,8 @@ const pricingSchema: PageSchema = {
                     type: "pricing",
                     variant: "basic",
                     title: "Starter 🏋️",
-                    price: "€9",
-                    tokens: 90,
+                    price: "£10", // GBP за замовчуванням
+                    tokens: 1000,
                     description: "Perfect for beginners starting their fitness journey.",
                     features: [
                         "1 personalized plan",
@@ -45,8 +45,8 @@ const pricingSchema: PageSchema = {
                     type: "pricing",
                     variant: "highlight",
                     title: "Pro 💼",
-                    price: "€49",
-                    tokens: 490,
+                    price: "£20",
+                    tokens: 2000,
                     description: "Best for consistent trainees and fitness enthusiasts.",
                     features: [
                         "4 new plans every month",
@@ -61,8 +61,8 @@ const pricingSchema: PageSchema = {
                     type: "pricing",
                     variant: "premium",
                     title: "Elite 💎",
-                    price: "€99",
-                    tokens: 990,
+                    price: "£40",
+                    tokens: 4000,
                     description: "For athletes and those seeking maximum performance.",
                     features: [
                         "Unlimited training plans",
@@ -94,11 +94,7 @@ const pricingSchema: PageSchema = {
                 price: "dynamic",
                 tokens: 0,
                 description: "Flexible per-plan pricing, tailored to your needs.",
-                features: [
-                    "Choose your amount",
-                    "Instant calculation",
-                    "No expiration",
-                ],
+                features: ["Choose your amount", "Instant calculation", "No expiration"],
                 buttonText: "Buy Custom",
                 buttonLink: "/checkout?plan=custom",
             },

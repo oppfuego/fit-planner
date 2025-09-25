@@ -25,12 +25,13 @@ interface PricingCardProps {
     buttonLink?: string;
 }
 
-const CURRENCY_SIGNS: Record<"GBP" | "EUR", string> = {
+const CURRENCY_SIGNS: Record<"GBP" | "EUR" | "USD", string> = {
     GBP: "£",
     EUR: "€",
+    USD: "$",
 };
 
-const TOKENS_PER_UNIT = 10;
+const TOKENS_PER_UNIT = 100; // 1 валюта = 100 токенів
 
 const PricingCard: React.FC<PricingCardProps> = ({
                                                      variant = "basic",
@@ -44,8 +45,9 @@ const PricingCard: React.FC<PricingCardProps> = ({
     const { showAlert } = useAlert();
     const user = useUser();
 
-    const [currency, setCurrency] = useState<"GBP" | "EUR">("GBP");
-    const [customAmount, setCustomAmount] = useState<number>(20);
+    // 🔹 головна валюта = GBP
+    const [currency, setCurrency] = useState<"GBP" | "EUR" | "USD">("GBP");
+    const [customAmount, setCustomAmount] = useState<number>(1);
 
     const config = cardVariants[variant];
     const hover = hoverEffects[config.hover as HoverEffect];
@@ -67,8 +69,12 @@ const PricingCard: React.FC<PricingCardProps> = ({
         try {
             let body: any;
             if (isCustom) {
-                if (customAmount < 5) {
-                    showAlert("Minimum is 5", `Enter at least 5 ${currency}`, "warning");
+                if (customAmount < 0.01) {
+                    showAlert(
+                        "Minimum is 0.01",
+                        `Enter at least 0.01 ${currency} (1 token)`,
+                        "warning"
+                    );
                     return;
                 }
                 body = { currency, amount: customAmount };
@@ -89,7 +95,9 @@ const PricingCard: React.FC<PricingCardProps> = ({
             showAlert(
                 "Success!",
                 isCustom
-                    ? `You paid ${currencySign}${customAmount} ${currency} (≈ ${Math.floor(
+                    ? `You paid ${currencySign}${customAmount.toFixed(
+                        2
+                    )} ${currency} (≈ ${Math.round(
                         customAmount * TOKENS_PER_UNIT
                     )} tokens)`
                     : `You purchased ${tokens} tokens.`,
@@ -118,7 +126,6 @@ const PricingCard: React.FC<PricingCardProps> = ({
                     "0 6px 16px rgba(0,0,0,0.08)";
             }}
         >
-            {/* бейдж зверху праворуч */}
             {config.label && (
                 <span
                     className={styles.bestChoiceLabel}
@@ -143,7 +150,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
                                 type="number"
                                 value={customAmount}
                                 onChange={(e) => setCustomAmount(Number(e.target.value))}
-                                slotProps={{ input: { min: 5, step: 1 } }}
+                                slotProps={{ input: { min: 0.01, step: 0.01 } }}
                                 sx={{ flex: 1 }}
                                 placeholder="Enter amount"
                                 variant="outlined"
@@ -152,42 +159,43 @@ const PricingCard: React.FC<PricingCardProps> = ({
                             />
                             <Select
                                 value={currency}
-                                onChange={(_, val) => val && setCurrency(val as "GBP" | "EUR")}
+                                onChange={(_, val) =>
+                                    val && setCurrency(val as "GBP" | "EUR" | "USD")
+                                }
                                 size="md"
                                 sx={{ minWidth: 90 }}
                             >
                                 <Option value="GBP">£ GBP</Option>
                                 <Option value="EUR">€ EUR</Option>
+                                <Option value="USD">$ USD</Option>
                             </Select>
                         </div>
                         <p className={styles.price}>
                             {currencySign}
                             {customAmount.toFixed(2)}{" "}
                             <span className={styles.tokens}>
-                ≈ {Math.floor(customAmount * TOKENS_PER_UNIT)} tokens
+                ≈ {Math.round(customAmount * TOKENS_PER_UNIT)} tokens
               </span>
                         </p>
                     </>
                 ) : (
                     <p className={styles.price}>
-                        {price}
+                        {currencySign}
+                        {parseFloat(price.replace(/[^\d.]/g, "")).toFixed(2)}
                         <span className={styles.tokens}> / {tokens} tokens</span>
                     </p>
                 )}
             </div>
 
-            {/* заголовок і опис */}
             <h3 className={styles.title}>{title}</h3>
             <p className={styles.description}>{description}</p>
 
-            {/* фічі */}
             <ul className={styles.features}>
                 {features.map((f, i) => (
                     <li key={i}>{f}</li>
                 ))}
             </ul>
 
-            {/* кнопка */}
             <div style={{ marginTop: "auto" }}>
                 <ButtonUI type="button" sx={{ width: "100%" }} onClick={handleBuy}>
                     {user ? buttonText : "Sign Up to Buy"}
