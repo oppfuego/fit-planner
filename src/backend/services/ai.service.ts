@@ -13,14 +13,14 @@ const LENGTH_MAP: Record<string, { chunks: number }> = {
 
 
 export const aiService = {
-    async processPrompt(userId: string, email: string, prompt: string) {
+    async processPrompt(userId: string, email: string, prompt: string, cost?: number) {
         const user = await User.findById(userId);
         if (!user) throw new Error("UserNotFound");
 
-        const cost = parseInt(ENV.AI_COST_PER_REQUEST || "30", 10);
-        if (user.tokens < cost) throw new Error("InsufficientTokens");
+        const finalCost = cost ?? parseInt(ENV.AI_COST_PER_REQUEST || "30", 10);
+        if (user.tokens < finalCost) throw new Error("InsufficientTokens");
 
-        user.tokens -= cost;
+        user.tokens -= finalCost;
         await user.save();
 
         let chunksCount = 1;

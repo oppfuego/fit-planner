@@ -10,124 +10,125 @@ import {
 const privacyPolicySchema: PageSchema = {
     meta: {
         title: `Privacy Policy – ${COMPANY_NAME}`,
-        description: `Privacy Policy for ${COMPANY_NAME}: how we collect, use, and protect your fitness and account data when you use our training platform.`,
+        description: `Privacy Policy for ${COMPANY_NAME}: what data we collect, why we process it, retention periods, your rights, and security measures.`,
         keywords: [
             "privacy policy",
-            "fitness app data",
-            "GDPR",
-            "training platform security",
-            "personal data protection"
+            "data protection",
+            "UK GDPR",
+            "user rights",
+            "data security",
+            "cookies",
         ],
         canonical: "/privacy-policy",
         ogImage: {
             title: `${COMPANY_NAME} – Privacy Policy`,
-            description: "Clear and transparent privacy practices for your training journey.",
+            description: "Clear explanation of how we handle your personal data.",
             bg: "#ffffff",
-            color: "#000000"
-        }
+            color: "#000000",
+        },
     },
     blocks: [
         {
             type: "text",
-            title: "Privacy Policy – Overview",
-            description: `This Privacy Policy explains how ${COMPANY_NAME} collects, uses, and protects your data when you use our training platform. By signing up, buying tokens, or entering your fitness data, you agree to the practices described here.`
+            title: "Privacy Policy",
+            description: `Effective date: 15th September 2025  
+Data controller: ${COMPANY_LEGAL_NAME}  
+Company no.: ${COMPANY_NUMBER}  
+Registered office: ${COMPANY_ADDRESS}  
+Contact / Data Protection / Support: ${COMPANY_EMAIL}  
+Service: https://www.fitplaner.co.uk`,
         },
         {
             type: "text",
-            title: "1. Data We Collect",
+            title: "1. Introduction",
+            description:
+                `We respect your privacy. This Privacy Policy explains what personal data we collect, why we use it, how long we keep it and how you can exercise your rights. It applies to data collected when you use the ${COMPANY_NAME} website and services.`,
+        },
+        {
+            type: "text",
+            title: "2. What Data We Collect",
             bullets: [
-                "Account information: name, email, password.",
-                "Payment details (processed securely via third-party providers).",
-                "Fitness data: age, weight, goals, preferences, and training history.",
-                "Usage data such as IP address, browser type, and login activity."
-            ]
+                "Identity & contact: name, email, postal/billing address (if required).",
+                "Account data: username, hashed password, profile details, preferences.",
+                "Transactions: order references, payment metadata (amounts, dates) — card numbers and CVV are never stored.",
+                "Service use: order history, Credits/token ledger, purchased Training Plans, downloads, logs.",
+                "Technical & device: IP address, device type, browser/user-agent, timestamps.",
+                "Support: correspondence with support (emails, chats, attachments).",
+                "Optional: marketing preferences and consent records.",
+            ],
         },
         {
             type: "text",
-            title: "2. How We Use Your Data",
+            title: "3. Why We Process Your Data & Legal Bases",
             bullets: [
-                "To generate personalized training plans.",
-                "To provide nutrition and recovery recommendations (if applicable).",
-                "To manage your account and purchased tokens.",
-                "To improve the platform, features, and user experience."
-            ]
+                "To provide and operate the Service — performance of a contract.",
+                "To process payments and prevent fraud — legal obligation & legitimate interests.",
+                "To respond to support requests, refunds, complaints — contract / legitimate interests.",
+                "To send marketing communications — consent (can be withdrawn).",
+                "To improve and secure the Service (analytics, error logs, abuse detection) — legitimate interests balanced with your rights.",
+            ],
         },
         {
             type: "text",
-            title: "3. Legal Basis for Processing",
-            description: "We process your personal data under the legal bases of consent, contract performance, compliance with legal obligations, and legitimate interest (e.g., improving training services)."
+            title: "4. Sharing and International Transfers",
+            description:
+                "We share data with third parties where necessary: payment processors, cloud hosting/storage, analytics, crash reporting, support tools, and professional advisers. Some providers may be outside the UK/EEA. In such cases, safeguards are applied (adequacy decisions, SCCs, or lawful mechanisms).",
         },
         {
             type: "text",
-            title: "4. Data Sharing",
-            description: "We never sell your fitness data. Limited information may be shared with trusted partners only to deliver services (e.g., payment processors, hosting providers) under confidentiality agreements."
+            title: "5. Cookies and Similar Technologies",
+            description:
+                "We use cookies, localStorage, sessionStorage, and pixels to operate the Service, remember preferences, enable login, measure performance, and (with consent) support analytics and marketing. Essential cookies do not require consent. See our Cookie Policy for details.",
         },
         {
             type: "text",
-            title: "5. Data Retention",
-            description: "We keep personal and fitness data only as long as needed to provide training services or comply with legal requirements. You may request deletion of your account and data at any time."
-        },
-        {
-            type: "text",
-            title: "6. Data Security",
+            title: "6. How Long We Keep Your Data",
             bullets: [
-                "Encrypted storage of sensitive data.",
-                "Authentication and role-based access controls.",
-                "Regular monitoring and security updates."
-            ]
+                "Order/payment/transaction records: kept for 24 months minimum, up to 6 years for disputes or compliance.",
+                "Account profiles and logs: kept while active + reasonable period after closure for fraud prevention and compliance.",
+                "Support correspondence: retained as long as necessary to resolve, then for a reasonable period.",
+                "Data is deleted or anonymised when no longer required, unless law requires longer retention.",
+            ],
         },
         {
             type: "text",
             title: "7. Your Rights",
             bullets: [
-                "Access your stored fitness and account data.",
-                "Request corrections or updates.",
-                "Request deletion of your account.",
-                "Restrict or object to certain processing activities.",
-                "Request a copy of your data (data portability)."
-            ]
+                "Right of access — obtain a copy of your data.",
+                "Right to rectification — correct inaccurate or incomplete data.",
+                "Right to erasure — request deletion in certain circumstances.",
+                "Right to restriction — limit how your data is used.",
+                "Right to data portability — re-use your data for own purposes.",
+                "Right to object — to processing for legitimate interests or marketing.",
+                "Right to withdraw consent — withdraw marketing/consent at any time.",
+                `To exercise rights, contact ${COMPANY_EMAIL}. We may require ID verification. Response time: normally 1 month.`,
+            ],
         },
         {
             type: "text",
-            title: "8. Cookies and Tracking",
-            description: "We use cookies and analytics to track app usage and improve performance. You can disable cookies in your browser or device settings, but some features may not work properly."
+            title: "8. Security",
+            description:
+                "We apply access controls, encryption, secure backups, logging, vulnerability management, and least-privilege access. No system is 100% secure; we cannot guarantee absolute security.",
         },
         {
             type: "text",
-            title: "9. International Data Transfers",
-            description: "If your data is transferred outside the UK/EU, we ensure proper safeguards (such as Standard Contractual Clauses) to maintain protection."
+            title: "9. Children",
+            description:
+                "The Service is not intended for children under 18. We do not knowingly collect their data. If you believe we have done so, contact us and we will delete it.",
         },
         {
             type: "text",
-            title: "10. Children’s Privacy",
-            description: `${COMPANY_NAME} is not intended for users under 16. If we learn we have collected data from minors, it will be deleted promptly.`
+            title: "10. Changes to this Policy",
+            description:
+                "We may update this Privacy Policy from time to time. Material changes will be notified via email or a prominent notice on the Service. The effective date will be updated.",
         },
         {
             type: "text",
-            title: "11. Changes to the Privacy Policy",
-            description: "We may update this Privacy Policy to reflect platform changes. Updates will be announced on the site. Continued use after changes means acceptance of the new terms."
+            title: "11. Contact & Complaints",
+            description: `For questions or to exercise your rights, contact: ${COMPANY_EMAIL}.  
+If dissatisfied, you can lodge a complaint with the UK Information Commissioner’s Office (ICO).`,
         },
-        {
-            type: "text",
-            title: "12. Contact",
-            bullets: [
-                `Company: ${COMPANY_LEGAL_NAME}`,
-                `Company number: ${COMPANY_NUMBER}`,
-                `Address: ${COMPANY_ADDRESS}`,
-                `Support: ${COMPANY_EMAIL}`
-            ]
-        },
-        {
-            type: "text",
-            title: "Effective Date",
-            description: "This Privacy Policy is effective upon publication and replaces previous versions."
-        },
-        {
-            type: "text",
-            title: "Valid from",
-            description: "22 September 2025"
-        }
-    ]
+    ],
 };
 
 export default privacyPolicySchema;

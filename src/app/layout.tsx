@@ -1,6 +1,6 @@
 import "./globals.css";
-import { authWrapper } from "@/utils/authWrapper";
-import { AlertProvider } from "@/context/AlertContext";
+import {authWrapper} from "@/utils/authWrapper";
+import {AlertProvider} from "@/context/AlertContext";
 import PageWrapper from "@/components/ui/page-wrapper/PageWrapper";
 import Header from "@/components/ui/header/Header";
 import Footer from "@/components/ui/footer/Footer";
@@ -8,14 +8,15 @@ import ProtectedRoute from "@/components/features/protected-route/ProtectedRoute
 import {currentFont} from "@/resources/styles-config";
 import {I18nProvider} from "@/context/i18nContext";
 import {AllOrdersProvider} from "@/context/AllOrdersContext";
+import {CurrencyProvider} from "@/context/CurrencyContext";
 
-function Layout({ children }: { children: React.ReactNode }) {
+function Layout({children}: { children: React.ReactNode }) {
     return (
         <html lang="en">
         <head>
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-            <link href={currentFont.url} rel="stylesheet" />
+            <link rel="preconnect" href="https://fonts.googleapis.com"/>
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/>
+            <link href={currentFont.url} rel="stylesheet"/>
             <style>{`:root { --font-family: ${currentFont.css}; }`}</style>
         </head>
         <body>
@@ -23,11 +24,13 @@ function Layout({ children }: { children: React.ReactNode }) {
             <AlertProvider>
                 <AllOrdersProvider>
                     <ProtectedRoute>
-                        <Header />
-                        <PageWrapper>
-                            {children}
-                        </PageWrapper>
-                        <Footer />
+                        <CurrencyProvider>
+                            <Header/>
+                            <PageWrapper>
+                                {children}
+                            </PageWrapper>
+                            <Footer/>
+                        </CurrencyProvider>
                     </ProtectedRoute>
                 </AllOrdersProvider>
             </AlertProvider>

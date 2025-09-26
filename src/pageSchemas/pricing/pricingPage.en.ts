@@ -30,7 +30,7 @@ const pricingSchema: PageSchema = {
                     type: "pricing",
                     variant: "basic",
                     title: "Starter 🏋️",
-                    price: "£10", // GBP за замовчуванням
+                    price: "10", // GBP за замовчуванням
                     tokens: 1000,
                     description: "Perfect for beginners starting their fitness journey.",
                     features: [
@@ -45,7 +45,7 @@ const pricingSchema: PageSchema = {
                     type: "pricing",
                     variant: "highlight",
                     title: "Pro 💼",
-                    price: "£20",
+                    price: "20",
                     tokens: 2000,
                     description: "Best for consistent trainees and fitness enthusiasts.",
                     features: [
@@ -61,7 +61,7 @@ const pricingSchema: PageSchema = {
                     type: "pricing",
                     variant: "premium",
                     title: "Elite 💎",
-                    price: "£40",
+                    price: "40",
                     tokens: 4000,
                     description: "For athletes and those seeking maximum performance.",
                     features: [

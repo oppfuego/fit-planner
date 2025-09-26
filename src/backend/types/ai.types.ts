@@ -11,6 +11,7 @@ export interface AiOrderType {
 
 export interface CreateAiOrderRequest {
     prompt: string;
+    cost: number;
 }
 
 export interface CreateAiOrderResponse {

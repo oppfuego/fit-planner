@@ -2,140 +2,118 @@ import { PageSchema } from "@/components/constructor/page-render/types";
 import {
     COMPANY_NAME,
     COMPANY_LEGAL_NAME,
+    COMPANY_NUMBER,
     COMPANY_ADDRESS,
     COMPANY_EMAIL,
 } from "@/resources/constants";
 
-const cookiePolicyEn: PageSchema = {
+const cookiePolicySchema: PageSchema = {
     meta: {
-        title: `Cookie Policy – ${COMPANY_NAME}`,
-        description: `Understand how ${COMPANY_NAME} uses cookies to keep your fitness journey secure, smooth, and personalized.`,
+        title: `Cookies Policy – ${COMPANY_NAME}`,
+        description: `Cookies Policy for ${COMPANY_NAME}: categories, consent, examples, retention, third parties, and user controls.`,
         keywords: [
-            "cookies",
-            "cookie policy",
+            "cookies policy",
+            "cookie consent",
             "privacy",
-            "fitness data",
-            "tracking",
-            "consent",
+            "analytics",
+            "marketing",
+            "security",
         ],
         canonical: "/cookie-policy",
         ogImage: {
-            title: `Cookie Policy – ${COMPANY_NAME}`,
-            description: "Clear info about cookies & data use.",
-            bg: "#0a2540",
-            color: "#ffffff",
+            title: `${COMPANY_NAME} – Cookies Policy`,
+            description: "How cookies are used and how you can manage them.",
+            bg: "#ffffff",
+            color: "#000000",
         },
     },
     blocks: [
         {
             type: "text",
-            title: `Cookie Policy – Stay in Control`,
-            description: `At ${COMPANY_NAME}, transparency matters. Just like tracking your workouts, we also track essential activity on our platform — but only with your consent. This page explains what cookies we use, why, and how you can manage them.`,
+            title: "Cookies Policy",
+            description: `Effective date: 15th September 2025  
+Data controller: ${COMPANY_LEGAL_NAME}  
+Company no.: ${COMPANY_NUMBER}  
+Registered office: ${COMPANY_ADDRESS}  
+Service / site: https://www.fitplaner.co.uk  
+Contact: ${COMPANY_EMAIL}`,
         },
-
         {
             type: "text",
-            title: "What are cookies?",
-            description:
-                "Think of cookies like a workout logbook: small files stored on your device that help us remember your preferences, keep you signed in, and improve performance. Alongside cookies, we may also use Local Storage, Session Storage, and tracking pixels (together: 'trackers').",
+            title: "1. Overview",
+            description: `This Cookie Policy explains how FitPlaner (operated by ${COMPANY_LEGAL_NAME} — “we”, “us”, “our”) uses cookies and similar technologies (for example localStorage, sessionStorage and pixels) on the Service. It complements our Privacy Policy. By using the site or interacting with our cookie banner you can accept, decline or customise non-essential cookies as described below.`,
         },
-
         {
             type: "text",
-            title: "Cookie Categories",
+            title: "2. What are cookies?",
+            description: `Cookies are small text files placed on your device when you visit websites. They help deliver core functionality (for example keeping you logged in), remember preferences, measure and improve site performance, and — with your consent — enable analytics and marketing features.`,
+        },
+        {
+            type: "text",
+            title: "3. Cookie categories we use",
             bullets: [
-                "✅ **Necessary** – for login, payments, and platform security.",
-                "⚙️ **Functional** – remembers your language, theme, and layout.",
-                "📈 **Analytics** – helps us understand how users train with the app.",
-                "🎯 **Marketing** – optional; used only if you agree (campaigns, offers).",
-                "🛡️ **Security** – protects against fraud and suspicious activity.",
+                "Necessary / Essential — required for core platform functions (account login, security, session management). These cookies do not require consent.",
+                "Functional — remember your settings and preferences (language, layout, UI choices).",
+                "Performance / Analytics — measure site usage, errors and load times to improve reliability and performance. These may operate under legitimate interests or consent depending on the tool.",
+                "Marketing / Advertising — used only if you enable them: campaign attribution, remarketing and interest-based content (consent required).",
+                "Security / Anti-abuse — detect unusual patterns and protect the site and users from fraud and bots.",
             ],
         },
-
         {
             type: "text",
-            title: "Examples of cookies & lifetime",
+            title: "4. Typical cookies (examples)",
             bullets: [
-                "csrf_token – secures forms (necessary) • Lifetime: session",
-                "consent_state – stores your choice (necessary) • Lifetime: 12 months",
-                "ui_prefs – saves your theme/language (functional) • Lifetime: 6 months",
-                "perf_metrics – performance data (analytics) • Lifetime: 3 months",
-                "campaign_src – tracks referral campaign (marketing) • Lifetime: 3 months",
+                "session_id — Purpose: login session (necessary). Lifetime: session.",
+                "csrf_token — Purpose: CSRF protection (necessary). Lifetime: session.",
+                "consent_state — Purpose: stores your cookie consent choice (functional). Lifetime: 6–12 months.",
+                "ui_prefs — Purpose: language / layout preferences (functional). Lifetime: ~6 months.",
+                "perf_metrics — Purpose: performance analytics (analytics). Lifetime: 1–3 months.",
+                "campaign_src — Purpose: campaign attribution (marketing). Lifetime: 1–3 months.",
+                "Note: exact cookie names, lifetimes and third-party providers can change — current details are available in the cookie control panel on the site.",
             ],
         },
-
         {
             type: "text",
-            title: "Third-party tools we use",
-            description:
-                `Just like we rely on certified trainers for your fitness progress, we rely on trusted third-party services to keep our platform running. They may place their own cookies.`,
+            title: "5. Consent and lawful basis",
             bullets: [
-                "📊 Analytics (Google Analytics, IP anonymization enabled)",
-                "⚡ Error/crash reporting",
-                "💳 Secure payments (Stripe, WayforPay, etc.)",
-                "🎥 Media/CDN providers (for videos & workouts)",
+                "Essential cookies: strictly necessary for the Service to function and used without consent.",
+                "Non-essential cookies (functional, analytics, marketing): set only after you give consent via our cookie banner or settings, except where we rely on legitimate interests for limited analytics or security purposes.",
+                "The lawful bases we rely on include: performance of contract, consent and legitimate interests (for fraud prevention, service improvement and dispute defence).",
+                "Where processing depends on consent you can withdraw it at any time.",
             ],
         },
-
         {
             type: "text",
-            title: "Your consent matters",
-            description:
-                "Non-essential cookies are set only if you allow them. You can change or withdraw your choice at any time via the “Cookie Settings” link in the footer. Withdrawal does not affect past processing but applies going forward.",
+            title: "6. How we record and retain consent",
+            description: `When you give consent we record: the consent text/version presented, an ISO 8601 timestamp, and technical metadata (IP address and user-agent) as evidence. Consent records and related transaction/order evidence are retained for a minimum of 24 months and up to 6 years for enterprise or disputed matters, in line with our Privacy Policy.`,
         },
-
-        {
-            type: "faq",
-            items: [
-                {
-                    question: "How can I manage cookies in Chrome?",
-                    answer:
-                        "Go to Settings → Privacy and security → Cookies and other site data.",
-                },
-                {
-                    question: "What about Safari on iOS/macOS?",
-                    answer: "Go to Settings → Safari → Advanced → Website Data.",
-                },
-                {
-                    question: "Firefox?",
-                    answer: "Preferences → Privacy & Security → Cookies and Site Data.",
-                },
-                {
-                    question: "Microsoft Edge?",
-                    answer: "Settings → Cookies and site permissions.",
-                },
-            ],
-        },
-
         {
             type: "text",
-            title: "Do Not Track",
-            description:
-                "If your browser sends a Do Not Track (DNT) signal, we attempt to honor it where technically feasible. Note: not all third parties reliably respect DNT — please check their opt-out policies.",
+            title: "7. Third parties and international transfers",
+            description: `We use third-party providers (for example payment processors, analytics, hosting and marketing platforms) that may set cookies. Some providers may process data outside the UK/EEA; where transfers occur we use appropriate safeguards such as UK adequacy, Standard Contractual Clauses (SCCs) or equivalent measures to protect your personal data. A current list of third-party providers and their cookie behaviour is available in the cookie control panel on the site.`,
         },
-
         {
             type: "text",
-            title: "Changes to this policy",
-            description:
-                "We may update this Cookie Policy from time to time (e.g., when introducing new services or to comply with new legal requirements). The latest version is always available on this page.",
-        },
-
-        {
-            type: "text",
-            title: "Contact us",
+            title: "8. How to manage or withdraw cookie consent",
             bullets: [
-                `📧 Email: ${COMPANY_EMAIL}`,
-                `🏢 Address: ${COMPANY_LEGAL_NAME}, ${COMPANY_ADDRESS}`,
+                "Use the cookie banner or cookie settings on the site to accept, decline or customise non-essential cookies.",
+                "You can withdraw consent at any time using the cookie settings link in the footer.",
+                "You may also remove cookies via your browser settings (clear cookies / site data) or use private/incognito mode.",
+                "Note that deleting or blocking certain cookies may degrade site functionality (for example you may be logged out or preferences forgotten).",
             ],
         },
-
         {
             type: "text",
-            title: "Last updated",
-            description: "21 September 2025",
+            title: "9. Changes to this Policy",
+            description: `We may update this Cookie Policy (for example when adding new integrations). Material changes will be notified by a prominent notice on the Service or by e-mail to registered users. The policy’s effective date will be updated.`,
+        },
+        {
+            type: "text",
+            title: "10. Contact",
+            description: `For questions about cookies or this Policy contact: ${COMPANY_EMAIL}.  
+Postal enquiries: ${COMPANY_LEGAL_NAME} — ${COMPANY_ADDRESS}.`,
         },
     ],
 };
 
-export default cookiePolicyEn;
+export default cookiePolicySchema;

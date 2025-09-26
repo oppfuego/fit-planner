@@ -3,9 +3,9 @@ import { aiService } from "../services/ai.service";
 import { CreateAiOrderRequest, CreateAiOrderResponse, GetAiOrdersResponse, GetAiOrderResponse } from "@/backend/types/ai.types";
 
 export const aiController = {
-    async createOrder(userId: string, email: string, body: CreateAiOrderRequest): Promise<CreateAiOrderResponse> {
+    async createOrder(userId: string, email: string, body: CreateAiOrderRequest) {
         await connectDB();
-        const order = await aiService.processPrompt(userId, email, body.prompt);
+        const order = await aiService.processPrompt(userId, email, body.prompt, body.cost);
         return { order };
     },
 

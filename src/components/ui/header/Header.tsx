@@ -1,14 +1,15 @@
 "use client";
 
-import React, {useEffect, useState} from "react";
-import {headerContent} from "@/resources/content";
+import React, { useEffect, useState } from "react";
+import { headerContent } from "@/resources/content";
 import styles from "./Header.module.scss";
-import {IconButton} from "@mui/material";
-import {FaBars} from "react-icons/fa";
-import {useUser} from "@/context/UserContext";
+import { IconButton } from "@mui/material";
+import { FaBars } from "react-icons/fa";
+import { useUser } from "@/context/UserContext";
+import { useCurrency } from "@/context/CurrencyContext";
 import Image from "next/image";
 import AuthButtons from "@/components/widgets/auth-buttons/AuthButtons";
-import {headerStyles} from "@/resources/styles-config";
+import { headerStyles } from "@/resources/styles-config";
 import DrawerMenu from "@/components/ui/drawer/Drawer";
 
 const Header: React.FC = () => {
@@ -17,9 +18,10 @@ const Header: React.FC = () => {
     const [mounted, setMounted] = useState(false);
 
     const user = useUser();
+    const { currency, setCurrency } = useCurrency();
 
     useEffect(() => {
-        setMounted(true); // лише після mount будемо показувати баланс
+        setMounted(true);
     }, []);
 
     useEffect(() => {
@@ -56,6 +58,7 @@ const Header: React.FC = () => {
                 style={scrolledStyle}
             >
                 <div className={styles.headerInner}>
+                    {/* Лого */}
                     <a href={headerContent.logo.href} className={styles.logo}>
                         <Image
                             width={200}
@@ -65,6 +68,7 @@ const Header: React.FC = () => {
                         />
                     </a>
 
+                    {/* Навігація */}
                     <nav
                         className={styles.nav}
                         style={
@@ -81,25 +85,43 @@ const Header: React.FC = () => {
                         ))}
                     </nav>
 
+                    {/* Правий блок */}
                     <div className={styles.actions}>
-                        <AuthButtons/>
+                        <AuthButtons />
+
+                        {/* 🔹 Перемикач валют показується тільки якщо user залогінений */}
+                        {user && (
+                            <div className={styles.currencySwitch}>
+                                <button
+                                    className={currency === "GBP" ? styles.active : ""}
+                                    onClick={() => setCurrency("GBP")}
+                                >
+                                    £ GBP
+                                </button>
+                                <button
+                                    className={currency === "EUR" ? styles.active : ""}
+                                    onClick={() => setCurrency("EUR")}
+                                >
+                                    € EUR
+                                </button>
+                            </div>
+                        )}
                     </div>
 
-
+                    {/* Бургер-меню */}
                     <div className={styles.menuButton}>
                         <IconButton
                             onClick={() => setDrawerOpen(true)}
                             aria-label="Open navigation"
                             className={styles.button}
                         >
-                            <FaBars className={styles.button}
-                            />
+                            <FaBars className={styles.button} />
                         </IconButton>
                     </div>
                 </div>
             </header>
 
-            <DrawerMenu open={drawerOpen} onClose={() => setDrawerOpen(false)}/>
+            <DrawerMenu open={drawerOpen} onClose={() => setDrawerOpen(false)} />
         </>
     );
 };
