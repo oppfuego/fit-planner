@@ -85,12 +85,10 @@ const Header: React.FC = () => {
                         ))}
                     </nav>
 
-                    {/* Правий блок */}
                     <div className={styles.actions}>
                         <AuthButtons />
 
-                        {/* 🔹 Перемикач валют показується тільки якщо user залогінений */}
-                        {user && (
+                        {mounted && (
                             <div className={styles.currencySwitch}>
                                 <button
                                     className={currency === "GBP" ? styles.active : ""}
