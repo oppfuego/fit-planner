@@ -105,7 +105,9 @@ const ManualGenerator = () => {
                         {formSchema.expectations.map((field) => (
                             <div key={field.name} className={styles.fullWidth}>
                                 <label className={styles.label}>{field.label}</label>
-                                {field.description && <p className={styles.description}>{field.description}</p>}
+                                {field.description && (
+                                    <p className={styles.description}>{field.description}</p>
+                                )}
                                 <Field
                                     name={field.name}
                                     as={Textarea}
@@ -119,7 +121,9 @@ const ManualGenerator = () => {
                             {formSchema.selectors.map((field) => (
                                 <div key={field.name} className={styles.formGroup}>
                                     <label className={styles.label}>{field.label}</label>
-                                    {field.description && <p className={styles.description}>{field.description}</p>}
+                                    {field.description && (
+                                        <p className={styles.description}>{field.description}</p>
+                                    )}
                                     <Select
                                         placeholder={field.label}
                                         value={values[field.name]}

@@ -148,6 +148,7 @@ const schema: PageSchema = {
         },
 
         // 🔹 FAQ
+        // 🔹 FAQ
         {
             type: "faq",
             items: [
@@ -167,8 +168,37 @@ const schema: PageSchema = {
                     question: "Can I track my progress?",
                     answer: "Yes — your dashboard lets you follow and measure results easily.",
                 },
+                {
+                    question: "Are the plans suitable for beginners?",
+                    answer: "Of course! Our specialists create and adjust the intensity and frequency of classes according to your level of training and availability.",
+                },
+                {
+                    question: "What equipment do I need?",
+                    answer: "You can specify available equipment — bodyweight only, full gym, or home setup — and we’ll adapt your plan accordingly.",
+                },
+                {
+                    question: "Do I need to train every day?",
+                    answer: "No. You can select how many days per week you want to train, and we’ll balance your load and recovery automatically.",
+                },
+                {
+                    question: "Is there nutritional guidance included?",
+                    answer: "Yes, if you wish, you can request a detailed meal plan.",
+                },
+                {
+                    question: "What payment methods are supported?",
+                    answer: "You can pay with credit/debit cards, PayPal, or local payment systems depending on your region.",
+                },
+                {
+                    question: "Is the website supported on mobile phones?",
+                    answer: "Yes, the website is supported on mobile phones. You can create a training programme and download it.",
+                },
+                {
+                    question: "Can I contact a real coach?",
+                    answer: "Yes — you can feedback sessions with professional trainers.",
+                },
             ],
         },
+
     ],
 };
 
