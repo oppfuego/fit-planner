@@ -111,3 +111,36 @@
     padding: 20px;
   }
 }
+
+.termsBlock {
+  margin-top: 8px;
+}
+
+.termsLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+
+  input {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+
+  a {
+    color: var(--primary-color);
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--secondary-color);
+    }
+  }
+}
+
+.errorText {
+  color: #dc2626;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}

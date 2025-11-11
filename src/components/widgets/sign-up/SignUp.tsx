@@ -6,11 +6,17 @@ import { useRouter } from "next/navigation";
 import {
     signUpValidation,
     signUpInitialValues,
-    signUpOnSubmit
+    signUpOnSubmit,
 } from "@/validationSchemas/sign-up/schema";
 import FormUI from "@/components/ui/form/FormUI";
 
-export type SignUpValues = { name: string; email: string; password: string };
+// ✅ типи з урахуванням terms
+export type SignUpValues = {
+    name: string;
+    email: string;
+    password: string;
+    terms: boolean;
+};
 
 export default function SignUpPage() {
     const { showAlert } = useAlert();
@@ -20,9 +26,10 @@ export default function SignUpPage() {
         <Formik<SignUpValues>
             initialValues={signUpInitialValues}
             validate={signUpValidation}
-            onSubmit={async (values, { setSubmitting }: FormikHelpers<SignUpValues>) =>
-                signUpOnSubmit(values, { setSubmitting }, showAlert, router)
-            }
+            onSubmit={async (
+                values,
+                { setSubmitting }: FormikHelpers<SignUpValues>
+            ) => signUpOnSubmit(values, { setSubmitting }, showAlert, router)}
         >
             {({ isSubmitting }) => (
                 <FormUI
@@ -32,9 +39,10 @@ export default function SignUpPage() {
                     fields={[
                         { name: "name", type: "text", placeholder: "Name" },
                         { name: "email", type: "email", placeholder: "Email" },
-                        { name: "password", type: "password", placeholder: "Password" }
+                        { name: "password", type: "password", placeholder: "Password" },
                     ]}
                     submitLabel="Sign Up"
+                    showTerms // ✅ додаємо чекбокс
                 />
             )}
         </Formik>

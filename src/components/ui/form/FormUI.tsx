@@ -1,9 +1,9 @@
+"use client";
 import React from "react";
-import {Form} from "formik";
+import { Form, Field, ErrorMessage, useFormikContext } from "formik";
 import styles from "./FormUI.module.scss";
 import InputUI from "@/components/ui/input/InputUI";
 import ButtonUI from "@/components/ui/button/ButtonUI";
-import {media} from "@/resources/media";
 
 interface FieldConfig {
     name: string;
@@ -17,11 +17,12 @@ interface FormUIProps {
     isSubmitting?: boolean;
     fields?: FieldConfig[];
     submitLabel?: string;
+    showTerms?: boolean; // ✅ для ввімкнення чекбоксу
 }
 
 const defaultFields: FieldConfig[] = [
-    {name: "email", type: "email", placeholder: "Email"},
-    {name: "password", type: "password", placeholder: "Password"}
+    { name: "email", type: "email", placeholder: "Email" },
+    { name: "password", type: "password", placeholder: "Password" },
 ];
 
 const FormUI: React.FC<FormUIProps> = ({
@@ -29,29 +30,60 @@ const FormUI: React.FC<FormUIProps> = ({
                                            description,
                                            isSubmitting,
                                            fields = defaultFields,
-                                           submitLabel = "Sign In"
-                                       }) => (
-    <div className={styles.wrapper}>
-        <div
-            className={styles.leftSide}
-            style={{ backgroundImage: `url(${media.image11.src})` }}
-        >
-        </div>
-            <div className={styles.rightSide}>
-                <div className={styles.formContainer}>
-                    <h2 className={styles.title}>{title}</h2>
-                    {description && <p className={styles.description}>{description}</p>}
-                    <Form className={styles.formContent}>
-                        {fields.map(field => (
-                            <InputUI key={field.name} {...field} formik />
-                        ))}
-                        <ButtonUI type="submit" text={submitLabel} disabled={isSubmitting} loading={isSubmitting} fullWidth />
-                    </Form>
-                </div>
+                                           submitLabel = "Sign In",
+                                           showTerms = false,
+                                       }) => {
+    const { values } = useFormikContext<any>(); // доступ до полів форми
+
+    // Блокування кнопки, якщо чекбокс не натиснуто
+    const isButtonDisabled =
+        isSubmitting || (showTerms ? !values.terms : false);
+
+    return (
+        <div className={styles.wrapper}>
+            <div className={styles.formContainer}>
+                <h2 className={styles.title}>{title}</h2>
+                {description && <p className={styles.description}>{description}</p>}
+
+                <Form className={styles.formContent}>
+                    {fields.map((field) => (
+                        <InputUI key={field.name} {...field} formik />
+                    ))}
+
+                    {showTerms && (
+                        <div className={styles.termsBlock}>
+                            <label className={styles.termsLabel}>
+                                <Field type="checkbox" name="terms" />
+                                <span>
+                  I agree to the{" "}
+                                    <a
+                                        href="/terms"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                    Terms & Conditions
+                  </a>
+                </span>
+                            </label>
+                            <ErrorMessage
+                                name="terms"
+                                component="div"
+                                className={styles.errorText}
+                            />
+                        </div>
+                    )}
+
+                    <ButtonUI
+                        type="submit"
+                        text={submitLabel}
+                        disabled={isButtonDisabled}
+                        loading={isSubmitting}
+                        fullWidth
+                    />
+                </Form>
             </div>
         </div>
-
-    )
-;
+    );
+};
 
 export default FormUI;
