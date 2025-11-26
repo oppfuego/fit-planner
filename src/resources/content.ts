@@ -33,6 +33,8 @@ export const footerContent = {
                 { label: "Pricing", href: "/pricing" },
                 { label: "Faq", href: "/faq" },
                 { label: "Get Started", href: "/get-started" },
+                { label: "Contact", href: "/contact-us" },
+                { label: "Services", href: "/services" },
             ],
         },
         {

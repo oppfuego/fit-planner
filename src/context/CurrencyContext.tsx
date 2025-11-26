@@ -2,12 +2,12 @@
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
-export type Currency = "GBP" | "EUR";
+export type Currency = "GBP" | "EUR" | "USD";
 
 interface CurrencyContextType {
     currency: Currency;
     setCurrency: (val: Currency) => void;
-    rateToGBP: number;
+    rateToGBP: number; // multiply GBP → currency
     sign: string;
     convertFromGBP: (gbp: number) => number;
     convertToGBP: (val: number) => number;
@@ -16,12 +16,14 @@ interface CurrencyContextType {
 const CURRENCY_SIGNS: Record<Currency, string> = {
     GBP: "£",
     EUR: "€",
+    USD: "$",
 };
 
-// 1 GBP = 1.17 EUR
+// 🔥 Курси (фіксовані або можу зробити авто-фетч з API)
 const RATES: Record<Currency, number> = {
     GBP: 1,
-    EUR: 1.17,
+    EUR: 1.17, // 1 GBP → 1.17 EUR
+    USD: 1.24, // 1 GBP → 1.24 USD
 };
 
 const CurrencyContext = createContext<CurrencyContextType>({

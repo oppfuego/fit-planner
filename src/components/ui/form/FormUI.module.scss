@@ -1,146 +1,115 @@
+/* ------------------------------
+ *  MAIN WRAPPER (full-page section)
+ * ------------------------------ */
+
 .wrapper {
-  display: flex;
-  min-height: 90vh;
   width: 100%;
-}
+  min-height: calc(90vh - 80px);
+  padding: 80px 20px 140px;
 
-.leftSide {
-  flex: 1;
-  background-size: cover;
-  background-position: center;
-  position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
-  color: #fff;
-  min-height: 300px;
+  align-items: center;
+}
 
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.45); // затемнення
-    z-index: 1;
-    pointer-events: none;
-    border-radius: inherit;
-  }
 
-  > * {
-    position: relative;
-    z-index: 2;
+/* ------------------------------
+ *  FORM CONTAINER
+ * ------------------------------ */
+
+.formContainer {
+  width: 100%;
+  max-width: 480px;
+
+  background: #ffffff;
+  padding: 40px 36px 48px;
+  border-radius: 22px;
+
+  box-shadow:
+          0 14px 40px rgba(0, 0, 0, 0.2),
+          0 6px 18px rgba(0, 0, 0, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  animation: fadeIn 0.5s ease forwards;
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 
-.rightSide {
-  flex: 1;
+/* ------------------------------
+ *  TEXT STYLING
+ * ------------------------------ */
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #041e33;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.description {
+  font-size: 16px;
+  color: #5f6b7a;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+
+/* ------------------------------
+ * FORM BODY
+ * ------------------------------ */
+
+.formContent {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  padding: 40px;
-
-  .formContainer {
-    width: 100%;
-    max-width: 420px;
-    background: #fff;
-    border-radius: 20px; /* повернув округлені кути */
-    border: 1px solid var(--border-color);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    transition: box-shadow 0.25s ease;
-
-    &:hover {
-      box-shadow: 0 14px 38px rgba(0, 0, 0, 0.16);
-    }
-  }
-
-  .title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 8px;
-    text-align: center;
-  }
-
-  .description {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .formContent {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-
-    button {
-      margin-top: 16px;
-      border-radius: 12px !important; /* теж округла */
-      font-weight: 700 !important;
-      font-size: 1rem !important;
-      padding: 14px !important;
-      background: var(--primary-color);
-      color: #fff;
-      transition: all 0.25s ease;
-
-      &:hover {
-        transform: translateY(-2px);
-        background: var(--secondary-color);
-        color: var(--primary-color);
-      }
-    }
-  }
+  flex-direction: column;
+  gap: 18px;
 }
 
-/* 📱 адаптив */
-@media (max-width: 1024px) {
-  .wrapper {
-    flex-direction: column;
-  }
 
-  .leftSide {
-    min-height: 240px;
-  }
-
-  .rightSide {
-    padding: 20px;
-  }
-}
+/* ------------------------------
+ * TERMS BLOCK
+ * ------------------------------ */
 
 .termsBlock {
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .termsLabel {
+  font-size: 14px;
+  color: #333;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  cursor: pointer;
+  gap: 10px;
 
-  input {
-    transform: scale(1.1);
-    cursor: pointer;
-  }
+  user-select: none;
 
   a {
-    color: var(--primary-color);
+    color: #0bbf98;
+    font-weight: 500;
     text-decoration: underline;
 
     &:hover {
-      color: var(--secondary-color);
+      text-decoration: none;
     }
   }
 }
 
+.checkbox {
+  transform: scale(1.25);
+  cursor: pointer;
+}
+
 .errorText {
-  color: #dc2626;
-  font-size: 0.85rem;
+  color: #d62828;
+  font-size: 13px;
   margin-top: 4px;
 }

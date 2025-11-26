@@ -54,6 +54,13 @@ const Footer: React.FC = () => {
             </address>
         ) : null;
 
+    const PaymentMethods = () => (
+                <div className={styles.paymentsContent}>
+                    <FaCcVisa className={styles.paymentIcon} />
+                    <FaCcMastercard className={styles.paymentIcon} />
+                </div>
+    );
+
     const LegalBlock = () =>
         legal ? (
             <div className={styles["footer__legal"]}>
@@ -322,20 +329,6 @@ const Footer: React.FC = () => {
                             </div>
                         )}
 
-
-                        {/* Payment Methods */}
-                        <div className={styles["footer__mega-col"]}>
-                            <div className={styles["footer__column-title"]}>Payment Methods</div>
-                            <div className={styles.payments}>
-                                <div className={styles.paymentsContent}>
-                                    <FaCcVisa className={styles.paymentIcon} />
-                                    <FaCcMastercard className={styles.paymentIcon} />
-                                    <FaCcAmex className={styles.paymentIcon} />
-                                    <FaGooglePay className={styles.paymentIcon} />
-                                    <FaApplePay className={styles.paymentIcon} />
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     {/*{!!socials?.length && (*/}
@@ -365,6 +358,7 @@ const Footer: React.FC = () => {
 
             <div className={styles["footer__rights"]}>
                 © {new Date().getFullYear()} All rights reserved.
+                <PaymentMethods/>
             </div>
         </footer>
     );

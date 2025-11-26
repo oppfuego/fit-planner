@@ -102,7 +102,14 @@ const Header: React.FC = () => {
                                 >
                                     € EUR
                                 </button>
+                                <button
+                                    className={currency === "USD" ? styles.active : ""}
+                                    onClick={() => setCurrency("USD")}
+                                >
+                                    $ USD
+                                </button>
                             </div>
+
                         )}
                     </div>
 

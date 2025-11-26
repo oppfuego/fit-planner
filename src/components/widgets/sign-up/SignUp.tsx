@@ -10,7 +10,6 @@ import {
 } from "@/validationSchemas/sign-up/schema";
 import FormUI from "@/components/ui/form/FormUI";
 
-// ✅ типи з урахуванням terms
 export type SignUpValues = {
     name: string;
     email: string;

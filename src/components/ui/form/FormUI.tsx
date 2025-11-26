@@ -17,7 +17,7 @@ interface FormUIProps {
     isSubmitting?: boolean;
     fields?: FieldConfig[];
     submitLabel?: string;
-    showTerms?: boolean; // ✅ для ввімкнення чекбоксу
+    showTerms?: boolean;
 }
 
 const defaultFields: FieldConfig[] = [
@@ -33,9 +33,8 @@ const FormUI: React.FC<FormUIProps> = ({
                                            submitLabel = "Sign In",
                                            showTerms = false,
                                        }) => {
-    const { values } = useFormikContext<any>(); // доступ до полів форми
+    const { values } = useFormikContext<any>();
 
-    // Блокування кнопки, якщо чекбокс не натиснуто
     const isButtonDisabled =
         isSubmitting || (showTerms ? !values.terms : false);
 
@@ -43,7 +42,10 @@ const FormUI: React.FC<FormUIProps> = ({
         <div className={styles.wrapper}>
             <div className={styles.formContainer}>
                 <h2 className={styles.title}>{title}</h2>
-                {description && <p className={styles.description}>{description}</p>}
+
+                {description && (
+                    <p className={styles.description}>{description}</p>
+                )}
 
                 <Form className={styles.formContent}>
                     {fields.map((field) => (
@@ -53,18 +55,22 @@ const FormUI: React.FC<FormUIProps> = ({
                     {showTerms && (
                         <div className={styles.termsBlock}>
                             <label className={styles.termsLabel}>
-                                <Field type="checkbox" name="terms" />
+                                <Field
+                                    type="checkbox"
+                                    name="terms"
+                                    className={styles.checkbox}
+                                />
                                 <span>
-                  I agree to the{" "}
+                                    I agree to the{" "}
                                     <a
-                                        href="/terms"
-                                        target="_blank"
+                                        href="/terms-and-conditions"
                                         rel="noopener noreferrer"
                                     >
-                    Terms & Conditions
-                  </a>
-                </span>
+                                        Terms & Conditions
+                                    </a>
+                                </span>
                             </label>
+
                             <ErrorMessage
                                 name="terms"
                                 component="div"

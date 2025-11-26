@@ -8,8 +8,10 @@ import { useUser } from "@/context/UserContext";
 import Input from "@mui/joy/Input";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
-import { useCurrency } from "@/context/CurrencyContext";
+import { Currency, useCurrency } from "@/context/CurrencyContext";
 import { cardVariants, hoverEffects } from "@/resources/styles-config";
+import { useRouter } from "next/navigation";
+import { useCheckoutStore } from "@/utils/store";
 
 type CardVariant = keyof typeof cardVariants;
 type HoverEffect = keyof typeof hoverEffects;
@@ -17,12 +19,11 @@ type HoverEffect = keyof typeof hoverEffects;
 interface PricingCardProps {
     variant?: CardVariant;
     title: string;
-    price: string; // "dynamic" або число як GBP
+    price: string;
     tokens: number;
     description: string;
     features: string[];
     buttonText: string;
-    buttonLink?: string;
 }
 
 const TOKENS_PER_GBP = 100;
@@ -38,65 +39,60 @@ const PricingCard: React.FC<PricingCardProps> = ({
                                                  }) => {
     const { showAlert } = useAlert();
     const user = useUser();
-    const { currency, setCurrency, sign, convertFromGBP, convertToGBP } = useCurrency();
+    const router = useRouter();
+    const { setPlan } = useCheckoutStore();
+
+    const { currency, setCurrency, sign, convertFromGBP, convertToGBP } =
+        useCurrency();
 
     const [customAmount, setCustomAmount] = useState<number>(1);
+
     const config = cardVariants[variant];
     const hover = hoverEffects[config.hover as HoverEffect];
+
     const isCustom = price === "dynamic";
 
-    // 💰 якщо це не кастом — ціна завжди у GBP і конвертується при зміні валюти
-    const basePriceGBP = useMemo(() => (isCustom ? 0 : parseFloat(price)), [price, isCustom]);
+    // 📌 Базова ціна у GBP
+    const basePriceGBP = useMemo(
+        () => (isCustom ? 0 : parseFloat(price)),
+        [price, isCustom]
+    );
+
+    // 📌 Конвертація у поточну валюту
     const convertedPrice = useMemo(() => {
         if (isCustom) return 0;
         return convertFromGBP(basePriceGBP);
     }, [basePriceGBP, convertFromGBP, isCustom]);
 
-    const handleBuy = async () => {
+    // 📌 BUY → Checkout
+    const handleBuy = () => {
         if (!user) {
             showAlert("Please sign up", "You need to be signed in to purchase", "info");
             setTimeout(() => (window.location.href = "/sign-up"), 1200);
             return;
         }
 
-        try {
-            let body: any;
+        let finalPriceGBP = basePriceGBP;
+        let finalTokens = tokens;
 
-            if (isCustom) {
-                const gbpEquivalent = convertToGBP(customAmount);
-                if (gbpEquivalent < 0.01) {
-                    showAlert("Minimum is 0.01", `Enter at least 0.01 GBP equivalent`, "warning");
-                    return;
-                }
-                body = { currency, amount: customAmount };
-            } else {
-                body = { amount: tokens };
-            }
-
-            const res = await fetch("/api/user/buy-tokens", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
-                body: JSON.stringify(body),
-            });
-
-            if (!res.ok) throw new Error(await res.text());
-            const data = await res.json();
-
-            showAlert(
-                "Success!",
-                isCustom
-                    ? `You paid ${sign}${customAmount.toFixed(2)} ${currency} (≈ ${Math.floor(
-                        convertToGBP(customAmount) * TOKENS_PER_GBP
-                    )} tokens)`
-                    : `You purchased ${tokens} tokens.`,
-                "success"
-            );
-
-            console.log("Updated user:", data.user);
-        } catch (err: any) {
-            showAlert("Error", err.message || "Something went wrong", "error");
+        // custom price
+        if (isCustom) {
+            finalPriceGBP = convertToGBP(customAmount);
+            finalTokens = Math.floor(finalPriceGBP * TOKENS_PER_GBP);
         }
+
+        const plan = {
+            title,
+            price: finalPriceGBP,
+            tokens: finalTokens,
+            currency,
+            variant,
+        };
+
+        setPlan(plan);
+        localStorage.setItem("selectedPlan", JSON.stringify(plan));
+
+        router.push("/checkout");
     };
 
     return (
@@ -113,19 +109,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
                     "0 6px 16px rgba(0,0,0,0.08)";
             }}
         >
-            {config.label && (
-                <span
-                    className={styles.bestChoiceLabel}
-                    style={{
-                        background: config.label.bg,
-                        color: config.label.color,
-                    }}
-                >
-          {config.label.text}
-        </span>
-            )}
-
-            {/* 💵 Ціновий блок */}
+            {/* PRICE BLOCK */}
             <div className={styles.priceBlock}>
                 {isCustom ? (
                     <>
@@ -141,22 +125,25 @@ const PricingCard: React.FC<PricingCardProps> = ({
                                 size="md"
                                 startDecorator={sign}
                             />
+
                             <Select
                                 value={currency}
-                                onChange={(_, val) => val && setCurrency(val as "GBP" | "EUR")}
+                                onChange={(_, val) => val && setCurrency(val as Currency)}
                                 size="md"
                                 sx={{ minWidth: 90 }}
                             >
                                 <Option value="GBP">£ GBP</Option>
                                 <Option value="EUR">€ EUR</Option>
+                                <Option value="USD">$ USD</Option>
                             </Select>
                         </div>
+
                         <p className={styles.price}>
                             {sign}
                             {customAmount.toFixed(2)}{" "}
                             <span className={styles.tokens}>
-                ≈ {Math.floor(convertToGBP(customAmount) * TOKENS_PER_GBP)} tokens
-              </span>
+                                ≈ {Math.floor(convertToGBP(customAmount) * TOKENS_PER_GBP)} tokens
+                            </span>
                         </p>
                     </>
                 ) : (
@@ -177,7 +164,11 @@ const PricingCard: React.FC<PricingCardProps> = ({
                 ))}
             </ul>
 
-            <ButtonUI type="button" sx={{ width: "100%", marginTop: "auto" }} onClick={handleBuy}>
+            <ButtonUI
+                type="button"
+                sx={{ width: "100%", marginTop: "auto" }}
+                onClick={handleBuy}
+            >
                 {user ? buttonText : "Sign Up to Buy"}
             </ButtonUI>
         </div>

@@ -27,7 +27,9 @@ const privacyPolicySchema: PageSchema = {
             color: "#000000",
         },
     },
+
     blocks: [
+        // HEADER
         {
             type: "text",
             title: "Privacy Policy",
@@ -38,95 +40,117 @@ Registered office: ${COMPANY_ADDRESS}
 Contact / Data Protection / Support: ${COMPANY_EMAIL}  
 Service: https://www.fitplaner.co.uk`,
         },
+
+        // 1. INTRODUCTION
         {
             type: "text",
             title: "1. Introduction",
             description:
-                `We respect your privacy. This Privacy Policy explains what personal data we collect, why we use it, how long we keep it and how you can exercise your rights. It applies to data collected when you use the ${COMPANY_NAME} website and services.`,
+                "We respect your privacy. This short Privacy Policy explains what personal data we collect, why we use it, how long we keep it and how you can exercise your rights. It applies to personal data we collect when you use the FitPlaner website and services.",
         },
+
+        // 2. WHAT DATA WE COLLECT
         {
             type: "text",
             title: "2. What Data We Collect",
             bullets: [
-                "Identity & contact: name, email, postal/billing address (if required).",
+                "Identity & contact: name, email address, postal/billing address (where required).",
                 "Account data: username, hashed password, profile details, preferences.",
-                "Transactions: order references, payment metadata (amounts, dates) — card numbers and CVV are never stored.",
-                "Service use: order history, Credits/token ledger, purchased Training Plans, downloads, logs.",
-                "Technical & device: IP address, device type, browser/user-agent, timestamps.",
-                "Support: correspondence with support (emails, chats, attachments).",
-                "Optional: marketing preferences and consent records.",
+                "Transactions: order references, payment metadata (provider reference, amounts, dates) — we do not store card numbers or CVV.",
+                "Service use: order history, Credits/token ledger, purchased Training Plans, downloads and access logs.",
+                "Technical & device: IP address, device type, browser/user-agent, timestamps and access logs.",
+                "Support: emails, chat transcripts, attachments you provide.",
+                "Optional: marketing preferences and consent records (if you opt in).",
             ],
         },
+
+        // 3. WHY WE PROCESS DATA
         {
             type: "text",
             title: "3. Why We Process Your Data & Legal Bases",
             bullets: [
-                "To provide and operate the Service — performance of a contract.",
-                "To process payments and prevent fraud — legal obligation & legitimate interests.",
-                "To respond to support requests, refunds, complaints — contract / legitimate interests.",
-                "To send marketing communications — consent (can be withdrawn).",
-                "To improve and secure the Service (analytics, error logs, abuse detection) — legitimate interests balanced with your rights.",
+                "To provide and operate the Service (accounts, Training Plans, downloads) — performance of a contract.",
+                "To process payments and prevent fraud (reconciliation, anti-fraud checks, chargebacks) — legal obligation & legitimate interests.",
+                "To manage support requests, refunds, complaints — contract / legitimate interests.",
+                "To send marketing communications — consent (may be withdrawn at any time).",
+                "To improve and secure the Service (analytics, error logs, abuse detection) — legitimate interests, balanced against your rights.",
             ],
         },
+
+        // 4. SHARING & TRANSFERS
         {
             type: "text",
             title: "4. Sharing and International Transfers",
             description:
-                "We share data with third parties where necessary: payment processors, cloud hosting/storage, analytics, crash reporting, support tools, and professional advisers. Some providers may be outside the UK/EEA. In such cases, safeguards are applied (adequacy decisions, SCCs, or lawful mechanisms).",
+                "We share data with third parties where necessary to deliver the Service, including payment processors, cloud hosting, analytics providers, crash-reporting tools, customer support platforms and professional advisers. Some may be outside the UK/EEA. Where transfers occur, we use appropriate safeguards such as adequacy decisions or standard contractual clauses (SCCs).",
         },
+
+        // 5. COOKIES
         {
             type: "text",
             title: "5. Cookies and Similar Technologies",
             description:
-                "We use cookies, localStorage, sessionStorage, and pixels to operate the Service, remember preferences, enable login, measure performance, and (with consent) support analytics and marketing. Essential cookies do not require consent. See our Cookie Policy for details.",
+                "We use cookies and similar technologies (localStorage, sessionStorage, pixels) to operate the Service, maintain sessions, remember preferences, measure performance and, with consent, enable analytics and marketing. Essential cookies do not require consent. See our Cookie Policy for details.",
         },
+
+        // 6. RETENTION
         {
             type: "text",
             title: "6. How Long We Keep Your Data",
             bullets: [
-                "Order/payment/transaction records: kept for 24 months minimum, up to 6 years for disputes or compliance.",
-                "Account profiles and logs: kept while active + reasonable period after closure for fraud prevention and compliance.",
-                "Support correspondence: retained as long as necessary to resolve, then for a reasonable period.",
-                "Data is deleted or anonymised when no longer required, unless law requires longer retention.",
+                "Order, payment and transaction data: retained for at least 24 months and up to 6 years for disputes or compliance.",
+                "Account profile and access logs: retained while account is active + a reasonable period after closure for fraud prevention and compliance.",
+                "Support correspondence: retained as long as needed to resolve the issue + reasonable additional period.",
+                "We delete or anonymise personal data when no longer required unless law requires longer retention.",
             ],
         },
+
+        // 7. RIGHTS
         {
             type: "text",
             title: "7. Your Rights",
             bullets: [
-                "Right of access — obtain a copy of your data.",
+                "Right of access — obtain a copy of your personal data.",
                 "Right to rectification — correct inaccurate or incomplete data.",
-                "Right to erasure — request deletion in certain circumstances.",
-                "Right to restriction — limit how your data is used.",
-                "Right to data portability — re-use your data for own purposes.",
-                "Right to object — to processing for legitimate interests or marketing.",
-                "Right to withdraw consent — withdraw marketing/consent at any time.",
-                `To exercise rights, contact ${COMPANY_EMAIL}. We may require ID verification. Response time: normally 1 month.`,
+                "Right to erasure — request deletion in certain cases.",
+                "Right to restriction — limit how your data is processed.",
+                "Right to data portability — receive certain data and reuse it.",
+                "Right to object — to processing based on legitimate interests or for direct marketing.",
+                "Right to withdraw consent — applicable to marketing and other optional consents.",
+                `To exercise any right, contact ${COMPANY_EMAIL}. Proof of identity may be required. We respond within statutory timeframes (usually 1 month).`,
             ],
         },
+
+        // 8. SECURITY
         {
             type: "text",
             title: "8. Security",
             description:
-                "We apply access controls, encryption, secure backups, logging, vulnerability management, and least-privilege access. No system is 100% secure; we cannot guarantee absolute security.",
+                "We implement technical and organisational measures including access controls, encryption, backups, logging, vulnerability management and least-privilege access. No system is completely secure; we cannot guarantee absolute security.",
         },
+
+        // 9. CHILDREN
         {
             type: "text",
             title: "9. Children",
             description:
                 "The Service is not intended for children under 18. We do not knowingly collect their data. If you believe we have done so, contact us and we will delete it.",
         },
+
+        // 10. CHANGES
         {
             type: "text",
             title: "10. Changes to this Policy",
             description:
-                "We may update this Privacy Policy from time to time. Material changes will be notified via email or a prominent notice on the Service. The effective date will be updated.",
+                "We may update this Privacy Policy from time to time. Material changes will be communicated via email or a prominent notice on the Service. The effective date will be updated accordingly.",
         },
+
+        // 11. CONTACT
         {
             type: "text",
             title: "11. Contact & Complaints",
-            description: `For questions or to exercise your rights, contact: ${COMPANY_EMAIL}.  
-If dissatisfied, you can lodge a complaint with the UK Information Commissioner’s Office (ICO).`,
+            description: `If you have questions or wish to exercise your rights, contact: ${COMPANY_EMAIL}.  
+If you remain dissatisfied, you may lodge a complaint with the UK Information Commissioner’s Office (ICO).`,
         },
     ],
 };

@@ -34,7 +34,8 @@
     "resend": "^6.1.0",
     "sass": "^1.92.1",
     "webpack": "^5.101.3",
-    "yup": "^1.7.0"
+    "yup": "^1.7.0",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
