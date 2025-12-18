@@ -331,27 +331,27 @@ const Footer: React.FC = () => {
 
                     </div>
 
-                    {/*{!!socials?.length && (*/}
-                    {/*    <div className={styles["footer__mega-socials"]}>*/}
-                    {/*        {socials.map((s) => {*/}
-                    {/*            const Icon = s.icon;*/}
-                    {/*            const isExternal = !s.href?.startsWith("/");*/}
-                    {/*            return (*/}
-                    {/*                <SmartLink*/}
-                    {/*                    key={s.label}*/}
-                    {/*                    href={s.href}*/}
-                    {/*                    className={styles["footer__social-link"]}*/}
-                    {/*                    ariaLabel={s.label}*/}
-                    {/*                    title={s.label}*/}
-                    {/*                    target={isExternal ? "_blank" : undefined}*/}
-                    {/*                    rel={isExternal ? "noopener noreferrer" : undefined}*/}
-                    {/*                >*/}
-                    {/*                    <Icon size={footerStyles.sizes?.icons?.xl ?? 24} />*/}
-                    {/*                </SmartLink>*/}
-                    {/*            );*/}
-                    {/*        })}*/}
-                    {/*    </div>*/}
-                    {/*)}*/}
+                    {!!socials?.length && (
+                        <div className={styles["footer__socials"]}>
+                            {socials.map((s) => {
+                                const Icon = s.icon;
+                                const isExternal = !s.href?.startsWith("/");
+                                return (
+                                    <SmartLink
+                                        key={s.label}
+                                        href={s.href}
+                                        className={styles["footer__social-link"]}
+                                        ariaLabel={s.label}
+                                        title={s.label}
+                                        target={isExternal ? "_blank" : undefined}
+                                        rel={isExternal ? "noopener noreferrer" : undefined}
+                                    >
+                                        <Icon size={footerStyles.sizes?.icons?.xl ?? 24} />
+                                    </SmartLink>
+                                );
+                            })}
+                        </div>
+                    )}
                 </div>
             )}
 

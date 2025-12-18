@@ -1,5 +1,5 @@
 import { media } from "@/resources/media";
-import { FaTwitter, FaFacebook, FaLinkedin } from "react-icons/fa";
+import {FaTwitter, FaFacebook, FaLinkedin, FaInstagram} from "react-icons/fa";
 
 export const baseURL =
     typeof window !== "undefined"
@@ -46,6 +46,7 @@ export const footerContent = {
                 { label: "Privacy Policy", href: "/privacy-policy" },
             ],
         },
+
     ],
     contact: {
         email: "info@fitplaner.co.uk",
@@ -59,8 +60,6 @@ export const footerContent = {
         address: "Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF",
     },
     socials: [
-        { label: "Twitter", href: "https://x.com/...", icon: FaTwitter },
-        { label: "Facebook", href: "https://facebook.com/...", icon: FaFacebook },
-        { label: "LinkedIn", href: "https://linkedin.com/...", icon: FaLinkedin },
+        { label: "Instagram", href: "https://www.instagram.com/fitplaner.co.uk/", icon: FaInstagram },
     ],
 };
