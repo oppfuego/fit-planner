@@ -293,8 +293,6 @@ const Footer: React.FC = () => {
                             </div>
                         ))}
 
-                        {/* Company */}
-                        {/* Company */}
                         {legal && (
                             <div className={styles["footer__mega-col"]}>
                                 <div className={styles["footer__legal"]}>

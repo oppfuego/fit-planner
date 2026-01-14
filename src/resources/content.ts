@@ -61,5 +61,6 @@ export const footerContent = {
     },
     socials: [
         { label: "Instagram", href: "https://www.instagram.com/fitplaner.co.uk/", icon: FaInstagram },
+        { label: "Linkedin", href: "https://www.linkedin.com/company/fitplaner/", icon: FaLinkedin },
     ],
 };
