@@ -17,7 +17,8 @@ const termsSchema: PageSchema = {
             "service terms",
             "refund policy",
             "liability",
-            "fitplaner",
+            "fitness plans",
+            "workout generator",
         ],
         canonical: "/terms",
         ogImage: {
@@ -32,208 +33,212 @@ const termsSchema: PageSchema = {
         {
             type: "text",
             title: "Terms and Conditions",
-            description: `Effective date: 15th September 2025`,
+            bullets: [
+                "Effective date: 15 September 2025",
+                `These Terms govern access to and use of ${COMPANY_NAME} operated by ${COMPANY_LEGAL_NAME}.`,
+            ],
         },
 
-        // 1. INTRODUCTION
         {
             type: "text",
             title: "1. Introduction",
             bullets: [
-                `These Terms and Conditions govern your access to and use of the ${COMPANY_NAME} website and services (“the Service”) operated by ${COMPANY_LEGAL_NAME} (company number: ${COMPANY_NUMBER}, registered office: ${COMPANY_ADDRESS}).`,
-                `By accessing or using the Service, creating an account, purchasing Credits (see clause 4), booking paid services or otherwise interacting with the Service, you agree to be bound by these Terms.`,
-                `If you do not agree with any part of these Terms, you must not use the Service.`,
+                `1.1. These Terms apply to your use of the ${COMPANY_NAME} website and services operated by ${COMPANY_LEGAL_NAME} (Company No. ${COMPANY_NUMBER}, registered office: ${COMPANY_ADDRESS}).`,
+                "1.2. By creating an account, purchasing Credits, booking paid services, or using the platform, you agree to be bound by these Terms.",
+                "1.3. If you do not agree with these Terms, you must not use the Service.",
             ],
         },
 
-        // 2. DEFINITIONS
         {
             type: "text",
             title: "2. Definitions",
             bullets: [
-                "Account – the user account created on the Service.",
-                "Training Plan(s) – personalised or pre-made workout programmes, exercise routines, diet guidance or related digital content (PDF, DOCX, etc.).",
-                "Credits (Tokens) – internal unit of account used to obtain Services.",
-                "Service(s) / Product(s) – Training Plans, coaching, consultations, and other goods or services provided.",
-                "You / Your / Customer – the person or legal entity using the Service or purchasing Credits.",
+                "2.1. Account – the user account created on the Service.",
+                "2.2. Training Plan(s) – personalised or template-based workout programmes, exercise routines, nutrition or fitness guidance delivered digitally.",
+                "2.3. Credits (Tokens) – internal virtual credits used to access Services.",
+                "2.4. Services / Products – Training Plans, consultations, coaching, AI-generated fitness content, and related offerings.",
+                "2.5. You / Customer – any individual or legal entity using the Service.",
             ],
         },
 
-        // 3. ELIGIBILITY & ACCOUNT REGISTRATION
         {
             type: "text",
             title: "3. Eligibility and Account Registration",
             bullets: [
-                "You must be at least 18 years old to register and use the Service.",
-                "If registering for a company, you confirm you are authorised to do so.",
-                "You must provide accurate, current and complete information and keep it updated.",
-                `You must notify us immediately of any unauthorised Account access at ${COMPANY_EMAIL}.`,
+                "3.1. You must be at least 18 years old to register and use the Service.",
+                "3.2. If acting on behalf of a company, you confirm you are authorised to do so.",
+                "3.3. You must provide accurate, current and complete information and keep it updated.",
+                `3.4. Any unauthorised access to your Account must be reported immediately to ${COMPANY_EMAIL}.`,
             ],
         },
 
-        // 4. CREDITS (TOKENS)
         {
             type: "text",
             title: "4. Credits (Tokens)",
             bullets: [
-                "Credits are a virtual internal accounting mechanism, not legal tender or investments.",
-                "The nominal value of Credits is shown at checkout.",
-                "We may vary the nominal value prospectively.",
-                "Prices for Services may be expressed in Credits.",
-                "Credits are credited after successful payment and deducted when redeemed.",
-                "Unused Credits may be refundable under the Refund Policy.",
-                "Promotional Credit packages or bonuses may occasionally be offered.",
+                "4.1. Credits are a virtual internal accounting unit and are not legal tender, currency or investments.",
+                "4.2. The nominal value of Credits is displayed at checkout.",
+                "4.3. We may update Credit pricing prospectively.",
+                "4.4. Services may be priced in Credits.",
+                "4.5. Credits are credited after successful payment and deducted upon redemption.",
+                "4.6. Promotional or bonus Credits may be offered subject to specific conditions.",
             ],
         },
 
-        // 5. ORDERING, PAYMENT, CHECKOUT
         {
             type: "text",
             title: "5. Ordering, Payment and Checkout",
             bullets: [
-                "Orders placed through the Service are subject to Company acceptance.",
-                "Payment methods available will be shown at checkout.",
-                "At checkout you will see the Credits purchased/used, nominal value, fiat payable, and applicable taxes/fees.",
-                "Where digital content is provided via download or online access, title transfers upon provision of the access link.",
+                "5.1. Orders placed through the Service are subject to acceptance.",
+                "5.2. Available payment methods are shown at checkout.",
+                "5.3. At checkout you will see the Credits used, nominal value, fiat price and applicable taxes or fees.",
+                "5.4. Access to digital Services is granted after payment confirmation.",
             ],
         },
 
-        // 6. REFUNDS & CONSUMER RIGHTS
         {
             type: "text",
-            title: "6. Refunds, Cancellations and Consumer Rights",
+            title: "6. Delivery of Digital Content",
             bullets: [
-                "Where digital content is supplied immediately with your agreement, you may lose cancellation rights under UK law.",
-                "Unused Credits may be refunded at purchase price before use (minus fees).",
-                `If a Training Plan or Service is faulty or not as described, contact ${COMPANY_EMAIL} with your details.`,
-                "Refund or cancellation requests must be sent with full details for review.",
+                "6.1. All Services are delivered digitally. No physical goods are shipped.",
+                "6.2. Delivery occurs when Training Plans or related digital content become available in your Account, via download or online access.",
+                "6.3. Content may be generated by artificial intelligence, human trainers, or a combination of both.",
+                "6.4. Re-accessing or re-downloading the same Training Plan does not consume additional Credits.",
+                "6.5. If delivery fails due to a technical issue attributable to us, we may re-deliver the content or restore Credits.",
+                `6.6. Support requests must be submitted to ${COMPANY_EMAIL} with relevant order details.`,
             ],
         },
 
-        // 7. HEALTH & SAFETY
         {
             type: "text",
-            title: "7. Health & Safety; No Medical Advice",
+            title: "7. Refunds, Cancellations and Consumer Rights",
             bullets: [
-                "Training Plans do not constitute medical advice.",
-                "Consult a healthcare professional before starting new exercise programmes.",
-                "You confirm you are physically able to perform recommended exercises.",
-                "The Company is not responsible for injuries or damages resulting from use of the Service.",
+                "7.1. Where digital content is supplied immediately with your consent, statutory cancellation rights may be lost.",
+                "7.2. Unused Credits may be refundable prior to use, subject to fees.",
+                "7.3. If a Training Plan or Service is faulty or not as described, contact support with full details.",
+                "7.4. Refund or cancellation requests are reviewed on a case-by-case basis.",
             ],
         },
 
-        // 8. INTELLECTUAL PROPERTY
         {
             type: "text",
-            title: "8. Intellectual Property Rights",
-            description: `All IP rights in content and materials belong to ${COMPANY_LEGAL_NAME} unless stated otherwise.`,
+            title: "8. Health & Safety; No Medical Advice",
             bullets: [
-                "You receive a limited, non-transferable licence for personal, non-commercial use.",
-                "You may not copy, reproduce, sell, distribute or alter Training Plans.",
-                "Custom Training Plans may have separate written terms.",
+                "8.1. Training Plans are provided for informational and fitness purposes only.",
+                "8.2. The Service does not provide medical advice.",
+                "8.3. Consult a qualified healthcare professional before starting any exercise programme.",
+                "8.4. You confirm you are physically able to perform the recommended activities.",
+                "8.5. The Company is not responsible for injuries, health issues or damages arising from use of the Service.",
             ],
         },
 
-        // 9. WARRANTIES
         {
             type: "text",
-            title: "9. Warranties and Disclaimers",
+            title: "9. Intellectual Property Rights",
             bullets: [
-                "We warrant we have rights to grant the licences described.",
-                "Services are provided “as is” and “as available”.",
-                "We disclaim implied warranties of fitness, quality or accuracy.",
-                "Individual results may vary; we do not guarantee specific outcomes.",
+                `9.1. All intellectual property rights in the Service and content belong to ${COMPANY_LEGAL_NAME} unless stated otherwise.`,
+                "9.2. You receive a limited, non-transferable licence for personal, non-commercial use.",
+                "9.3. You may not copy, reproduce, distribute or resell Training Plans without permission.",
             ],
         },
 
-        // 10. LIMITATION OF LIABILITY
         {
             type: "text",
-            title: "10. Limitation of Liability",
+            title: "10. Warranties and Disclaimers",
             bullets: [
-                "Nothing limits liability for death/personal injury due to negligence or fraud.",
-                "Liability is capped at the amount paid in the previous 12 months.",
-                "We are not liable for indirect or consequential losses such as lost profits or data.",
+                "10.1. We warrant that we have the right to provide the Services.",
+                "10.2. Services are provided “as is” and “as available”.",
+                "10.3. Individual fitness results may vary and are not guaranteed.",
             ],
         },
 
-        // 11. INDEMNITY
         {
             type: "text",
-            title: "11. Indemnity",
+            title: "11. Limitation of Liability",
             bullets: [
-                "Your breach of these Terms.",
-                "Your misuse of the Service or Training Plans.",
-                "Your violation of law or third-party rights.",
+                "11.1. Nothing limits liability for death or personal injury caused by negligence or fraud.",
+                "11.2. Total liability is capped at the amount paid by you in the preceding 12 months.",
+                "11.3. We are not liable for indirect or consequential losses, including loss of data or profits.",
             ],
         },
 
-        // 12. DATA PROTECTION
         {
             type: "text",
-            title: "12. Data Protection",
-            description: `${COMPANY_NAME} processes data in accordance with UK GDPR and the Data Protection Act 2018. See our Privacy Policy for details.`,
-        },
-
-        // 13. THIRD-PARTY CONTENT
-        {
-            type: "text",
-            title: "13. Third Party Links and Content",
-            description:
-                "The Service may link to third-party websites or tools. We are not responsible for their content or privacy practices.",
-        },
-
-        // 14. TERMINATION
-        {
-            type: "text",
-            title: "14. Suspension and Termination",
+            title: "12. Indemnity",
             bullets: [
-                "We may suspend or terminate your Account if you breach Terms or for fraud/security reasons.",
-                "Upon termination you must delete all Training Plans unless agreed otherwise.",
-                "Termination does not affect accrued rights.",
+                "12.1. Your breach of these Terms.",
+                "12.2. Your misuse of the Service or Training Plans.",
+                "12.3. Your violation of applicable laws or third-party rights.",
             ],
         },
 
-        // 15. CHANGES TO TERMS
         {
             type: "text",
-            title: "15. Changes to These Terms",
-            description:
-                `${COMPANY_NAME} may update these Terms. Material updates will be notified by email or on the Service. Continued use constitutes acceptance.`,
-        },
-
-        // 16. NOTICES
-        {
-            type: "text",
-            title: "16. Notices",
-            description:
-                `Notices to the Company must be sent to ${COMPANY_EMAIL} or the registered office. Notices to you may be sent via email or posted on the Service.`,
-        },
-
-        // 17. GOVERNING LAW
-        {
-            type: "text",
-            title: "17. Governing Law and Jurisdiction",
+            title: "13. Data Protection",
             bullets: [
-                "These Terms are governed by the laws of England and Wales.",
-                "The courts of England and Wales have jurisdiction, subject to consumer protections.",
+                `13.1. ${COMPANY_NAME} processes personal data in accordance with UK GDPR and the Data Protection Act 2018.`,
+                "13.2. Further details are set out in our Privacy Policy.",
             ],
         },
 
-        // 18. MISC
         {
             type: "text",
-            title: "18. Miscellaneous",
+            title: "14. Third Party Links and Content",
             bullets: [
-                "If any part of these Terms is invalid, remaining provisions continue in force.",
-                "Failure to enforce any right is not a waiver of that right.",
+                "14.1. The Service may link to third-party websites or tools.",
+                "14.2. We are not responsible for third-party content or privacy practices.",
             ],
         },
 
-        // 19. CONTACT
         {
             type: "text",
-            title: "19. Contact Details",
+            title: "15. Suspension and Termination",
+            bullets: [
+                "15.1. We may suspend or terminate Accounts for breach, fraud or security reasons.",
+                "15.2. Upon termination, access to Training Plans may cease.",
+                "15.3. Termination does not affect accrued rights.",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "16. Changes to These Terms",
+            bullets: [
+                `16.1. ${COMPANY_NAME} may update these Terms from time to time.`,
+                "16.2. Continued use of the Service constitutes acceptance of updated Terms.",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "17. Notices",
+            bullets: [
+                `17.1. Notices to the Company must be sent to ${COMPANY_EMAIL} or the registered office.`,
+                "17.2. Notices to you may be sent by email or via the Service.",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "18. Governing Law and Jurisdiction",
+            bullets: [
+                "18.1. These Terms are governed by the laws of England and Wales.",
+                "18.2. Courts of England and Wales have jurisdiction, subject to consumer protection laws.",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "19. Miscellaneous",
+            bullets: [
+                "19.1. If any provision is invalid, remaining provisions continue in force.",
+                "19.2. Failure to enforce a right is not a waiver of that right.",
+            ],
+        },
+
+        {
+            type: "text",
+            title: "20. Contact Details",
             bullets: [
                 `Company: ${COMPANY_LEGAL_NAME}`,
                 `Company number: ${COMPANY_NUMBER}`,
