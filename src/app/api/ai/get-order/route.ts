@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
         const orderId = searchParams.get("id");
         if (!orderId) return NextResponse.json({ message: "OrderId required" }, { status: 400 });
 
-        const order = await aiController.getOrder(user._id, orderId);
+        const order = await aiController.getOrder(user.sub, orderId);
         return NextResponse.json({ order });
     } catch (err: any) {
         return NextResponse.json({ message: err.message }, { status: 400 });

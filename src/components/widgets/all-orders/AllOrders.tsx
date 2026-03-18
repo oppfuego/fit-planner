@@ -34,7 +34,7 @@ const OrdersSection: React.FC = () => {
                         <li key={order._id} className={styles.orderCard}>
                             <div className={styles.orderHeader}>
                                 <span className={styles.orderId}>#{formatId(order._id)}</span>
-                                <span className={styles.charge}>-30 tokens</span>
+                                <span className={styles.charge}>-{order.cost} tokens</span>
                             </div>
                             <p className={styles.email}>{order.email}</p>
                             <p className={styles.date}>{formatDate(order.createdAt)}</p>

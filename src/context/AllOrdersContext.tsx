@@ -9,6 +9,7 @@ export interface AiOrder {
     email: string;
     prompt: string;
     response: string;
+    cost: number;
     createdAt: string;
 }
 

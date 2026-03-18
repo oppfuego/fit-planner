@@ -4,11 +4,16 @@ import { Form, Field, ErrorMessage, useFormikContext } from "formik";
 import styles from "./FormUI.module.scss";
 import InputUI from "@/components/ui/input/InputUI";
 import ButtonUI from "@/components/ui/button/ButtonUI";
+import SelectUI from "@/components/ui/select/SelectUI";
 
 interface FieldConfig {
     name: string;
     type: string;
+    label?: string;
     placeholder?: string;
+    autoComplete?: string;
+    options?: Array<{ label: string; value: string }>;
+    fullWidth?: boolean;
 }
 
 interface FormUIProps {
@@ -48,9 +53,33 @@ const FormUI: React.FC<FormUIProps> = ({
                 )}
 
                 <Form className={styles.formContent}>
+                    <div className={styles.fieldsGrid}>
                     {fields.map((field) => (
-                        <InputUI key={field.name} {...field} formik />
+                        <div
+                            key={field.name}
+                            className={`${styles.fieldBlock} ${field.fullWidth ? styles.fullWidthField : ""}`}
+                        >
+                            {field.label && <label htmlFor={field.name} className={styles.fieldLabel}>{field.label}</label>}
+                            {field.type === "select" ? (
+                                <SelectUI
+                                    name={field.name}
+                                    placeholder={field.placeholder}
+                                    options={field.options || []}
+                                    formik
+                                />
+                            ) : (
+                                <InputUI
+                                    id={field.name}
+                                    name={field.name}
+                                    type={field.type}
+                                    placeholder={field.placeholder}
+                                    autoComplete={field.autoComplete}
+                                    formik
+                                />
+                            )}
+                        </div>
                     ))}
+                    </div>
 
                     {showTerms && (
                         <div className={styles.termsBlock}>

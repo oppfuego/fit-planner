@@ -1,7 +1,8 @@
-import { AiOrder } from "../models/aiOrder.model";
+import { AiOrder, AiOrderDocument } from "../models/aiOrder.model";
 import { User } from "../models/user.model";
 import { ENV } from "../config/env";
 import OpenAI from "openai";
+import { sendAiOrderConfirmationEmail } from "@/backend/services/email.service";
 
 const openai = new OpenAI({ apiKey: ENV.OPENAI_API_KEY });
 
@@ -19,9 +20,6 @@ export const aiService = {
 
         const finalCost = cost ?? parseInt(ENV.AI_COST_PER_REQUEST || "30", 10);
         if (user.tokens < finalCost) throw new Error("InsufficientTokens");
-
-        user.tokens -= finalCost;
-        await user.save();
 
         let chunksCount = 1;
         for (const key in LENGTH_MAP) {
@@ -50,12 +48,34 @@ export const aiService = {
             throw new Error("OpenAIError: " + err.message);
         }
 
-        const order = await AiOrder.create({
-            userId,
-            email,
-            prompt,
-            response: polishedText.trim(),
-        });
+        const chargedUser = await User.findOneAndUpdate(
+            { _id: userId, tokens: { $gte: finalCost } },
+            { $inc: { tokens: -finalCost } },
+            { new: true }
+        );
+        if (!chargedUser) throw new Error("InsufficientTokens");
+
+        let order: AiOrderDocument;
+        try {
+            order = await AiOrder.create({
+                userId,
+                email,
+                prompt,
+                response: polishedText.trim(),
+                cost: finalCost,
+            });
+        } catch (error) {
+            await User.findByIdAndUpdate(userId, { $inc: { tokens: finalCost } });
+            throw error;
+        }
+
+        if (!order.confirmationEmailSentAt) {
+            const sent = await sendAiOrderConfirmationEmail(chargedUser, order);
+            if (sent) {
+                order.confirmationEmailSentAt = new Date();
+                await order.save();
+            }
+        }
 
         return order;
     },

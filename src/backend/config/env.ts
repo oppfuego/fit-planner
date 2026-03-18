@@ -17,7 +17,7 @@ export const ENV = {
     APP_URL: env("APP_URL", "http://localhost:3000"),
     NODE_ENV: env("NODE_ENV", "development"),
     OPENAI_API_KEY: env("OPENAI_API_KEY", "none"),
-    AI_COST_PER_REQUEST: env("AI_COST_PER_REQUEST", "tokens_per_request"),
+    AI_COST_PER_REQUEST: env("AI_COST_PER_REQUEST", "30"),
     SMTP_HOST: env("SMTP_HOST", "smtp.tech-text.co.uk"),
     SMTP_PORT: env("SMTP_PORT", "465"),
     SMTP_SECURE: env("SMTP_SECURE", "true") === "true",

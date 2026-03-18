@@ -54,15 +54,19 @@
 
 import React from "react";
 import Link from "next/link";
-import {FaCoins, FaUserCircle, FaSignOutAlt, FaArrowRight} from "react-icons/fa";
+import {FaCoins, FaUserCircle, FaArrowRight} from "react-icons/fa";
 import styles from "./UserProfile.module.scss";
 import ButtonUI from "@/components/ui/button/ButtonUI";
 import {LogoutButton} from "@/components/widgets/logout-button/LogoutButton";
 import {useUser} from "@/context/UserContext";
 import AllOrders from "@/components/widgets/all-orders/AllOrders";
+import { getCountryLabel } from "@/shared/countries";
 
 const UserProfile: React.FC = () => {
     const user = useUser();
+    const fullAddress = [user?.street, user?.city, getCountryLabel(user?.country), user?.postCode]
+        .filter(Boolean)
+        .join(", ");
 
     return (
         <div className={styles.dashboard}>
@@ -111,6 +115,15 @@ const UserProfile: React.FC = () => {
                 />
             </div>
 
+            <div className={styles.profileCard}>
+                <div className={styles.userInfo}>
+                    <h2>Account details</h2>
+                    <p>Phone: {user?.phoneNumber ?? "Not provided"}</p>
+                    <p>Date of birth: {user?.dateOfBirth ? new Date(user.dateOfBirth).toLocaleDateString("en-GB") : "Not provided"}</p>
+                    <p>Address: {fullAddress || "Not provided"}</p>
+                </div>
+            </div>
+
             {/* 🔹 Orders list */}
             <div className={styles.ordersSection}>
                 <AllOrders/>
@@ -120,4 +133,3 @@ const UserProfile: React.FC = () => {
 };
 
 export default UserProfile;
-

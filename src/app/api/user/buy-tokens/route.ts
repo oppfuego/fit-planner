@@ -27,7 +27,12 @@ export async function POST(req: NextRequest) {
             // розрахунок токенів пропорційно курсу
             const tokens = Math.floor(gbpEquivalent * TOKENS_PER_GBP);
 
-            const user = await userController.buyTokens(payload.sub, tokens);
+            const user = await userController.buyTokens({
+                userId: payload.sub,
+                tokensAdded: tokens,
+                currency,
+                paymentAmount: amount,
+            });
             return NextResponse.json({
                 user,
                 info: `Converted ${amount} ${currency} → ${tokens} tokens`,
@@ -40,7 +45,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ message: "Invalid token amount" }, { status: 400 });
         }
 
-        const user = await userController.buyTokens(payload.sub, amount);
+        const user = await userController.buyTokens({ userId: payload.sub, tokensAdded: amount });
         return NextResponse.json({ user });
     } catch (err: any) {
         return NextResponse.json({ message: err.message }, { status: 400 });

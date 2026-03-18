@@ -1,21 +1,38 @@
 import { connectDB } from "../config/db";
 import { userService } from "../services/user.service";
 import { UserType } from "@/backend/types/user.types";
-import {sendEmail} from "@/backend/utils/sendEmail";
+import { sendTokenPurchaseConfirmationEmail } from "@/backend/services/email.service";
+import { mapUserToResponse } from "@/backend/utils/userMapper";
+
+interface BuyTokensInput {
+    userId: string;
+    tokensAdded: number;
+    currency?: string;
+    paymentAmount?: number;
+}
 
 export const userController = {
-    async buyTokens(userId: string, amount: number): Promise<UserType> {
+    async buyTokens(input: BuyTokensInput): Promise<UserType> {
         await connectDB();
-        const user = await userService.addTokens(userId, amount);
-        sendEmail(user.email, 'Tokens Purchased', `You have successfully purchased ${amount} tokens. Your new balance is ${user.tokens} tokens.`);
-        return {
-            _id: user._id.toString(),
-            name: user.name,
-            email: user.email,
-            role: user.role,
-            tokens: user.tokens,
-            createdAt: user.createdAt,
-            updatedAt: user.updatedAt,
-        };
+        const { user, purchase } = await userService.addTokens(input);
+
+        if (!purchase.confirmationEmailSentAt) {
+            const sent = await sendTokenPurchaseConfirmationEmail({
+                email: user.email,
+                firstName: user.firstName,
+                tokensAdded: purchase.tokensAdded,
+                balance: purchase.balanceAfter,
+                currency: purchase.currency,
+                paymentAmount: purchase.paymentAmount,
+                transactionDate: purchase.createdAt,
+            });
+
+            if (sent) {
+                purchase.confirmationEmailSentAt = new Date();
+                await purchase.save();
+            }
+        }
+
+        return mapUserToResponse(user);
     },
 };

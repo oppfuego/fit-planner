@@ -11,7 +11,16 @@ export async function POST(req: NextRequest) {
         return res;
     } catch (e: any) {
         const msg = e?.message || "Registration error";
-        const code = msg.includes("registered") ? 400 : 500;
-        return NextResponse.json({ type: "EmailAlreadyRegistered", message: msg }, { status: code });
+        const isClientError =
+            msg.includes("registered") ||
+            msg.includes("required") ||
+            msg.includes("valid") ||
+            msg.includes("supported") ||
+            msg.includes("match");
+
+        return NextResponse.json(
+            { type: isClientError ? "RegistrationValidationError" : "GenericError", message: msg },
+            { status: isClientError ? 400 : 500 }
+        );
     }
 }

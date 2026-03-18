@@ -5,7 +5,8 @@ import { sha256, randomToken } from "../utils/crypto";
 import { signAccessToken, signRefreshToken } from "../utils/jwt";
 import { ENV } from "../config/env";
 import { Types } from "mongoose";
-import {sendEmail} from "@/backend/utils/sendEmail";
+import { normalizeRegisterPayload, RegisterPayload, validateRegisterPayload } from "@/shared/auth";
+import { sendRegistrationWelcomeEmail } from "@/backend/services/email.service";
 
 function parseDurationToSec(input: string): number {
     const m = input.match(/^(\d+)([smhd])?$/i);
@@ -19,18 +20,33 @@ function parseDurationToSec(input: string): number {
 const REFRESH_TTL_SEC = parseDurationToSec(ENV.REFRESH_TOKEN_EXPIRES);
 
 export const authService = {
-    async register(data: { name: string; email: string; password: string }) {
-        const existing = await User.findOne({ email: data.email.toLowerCase() });
+    async register(data: RegisterPayload) {
+        const normalized = normalizeRegisterPayload(data);
+        const validationErrors = validateRegisterPayload(normalized);
+        if (Object.keys(validationErrors).length > 0) {
+            throw new Error(Object.values(validationErrors)[0] || "Invalid registration data");
+        }
+
+        const existing = await User.findOne({ email: normalized.email });
         if (existing) throw new Error("Email already registered");
 
-        const hashed = await bcrypt.hash(data.password, 12);
-        const user = await User.create({ ...data, email: data.email.toLowerCase(), password: hashed });
+        const hashed = await bcrypt.hash(normalized.password, 12);
+        const fullName = `${normalized.firstName} ${normalized.lastName}`.trim();
+        const user = await User.create({
+            name: fullName,
+            firstName: normalized.firstName,
+            lastName: normalized.lastName,
+            email: normalized.email,
+            password: hashed,
+            phoneNumber: normalized.phoneNumber,
+            dateOfBirth: new Date(`${normalized.dateOfBirth}T00:00:00.000Z`),
+            street: normalized.street,
+            city: normalized.city,
+            country: normalized.country,
+            postCode: normalized.postCode,
+        });
         const result = await this.issueTokensAndSession(user._id, user.email, user.role, undefined, undefined);
-        await sendEmail(
-            user.email,
-            "Welcome to FitPlanner 🎉",
-            `Hi ${user.name}, thanks for registering at FitPlanner.`
-        );
+        void sendRegistrationWelcomeEmail(user);
 
         return { user, ...result };
     },
