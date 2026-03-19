@@ -390,23 +390,32 @@
 
 .paymentsContent {
   display: flex;
-  gap: 20px;
+  gap: 16px;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
   width: fit-content;
 }
 
-.paymentIcon {
-  font-size: 48px; /* розмір іконки */
-  opacity: 0.9;
-  transition: all 0.2s ease-in-out;
-  color: var(--primary-color);
+.paymentLogo,
+.pciLogo {
+  width: auto;
+  object-fit: contain;
+  opacity: 0.95;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 
   &:hover {
     opacity: 1;
-    transform: scale(1.1);
-    color: var(--tertiary-color); /* акцент при hover */
+    transform: translateY(-1px);
   }
+}
+
+.paymentLogo {
+  height: 38px;
+}
+
+.pciLogo {
+  height: 46px;
 }
 
 
@@ -464,5 +473,17 @@
   }
   .footer__mega-grid {
     grid-template-columns: repeat(var(--footer-cols-sm), minmax(160px, 1fr));
+  }
+
+  .paymentsContent {
+    justify-content: center;
+  }
+
+  .paymentLogo {
+    height: 32px;
+  }
+
+  .pciLogo {
+    height: 38px;
   }
 }
