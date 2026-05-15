@@ -1,5 +1,14 @@
 import { media } from "@/resources/media";
-import {FaTwitter, FaFacebook, FaLinkedin, FaInstagram} from "react-icons/fa";
+import {FaLinkedin, FaInstagram} from "react-icons/fa";
+import {
+    COMPANY_ADDRESS,
+    COMPANY_EMAIL,
+    COMPANY_LEGAL_NAME,
+    COMPANY_NUMBER,
+    COMPANY_PHONE,
+} from "@/resources/constants";
+
+const companyAddress = COMPANY_ADDRESS ?? "";
 
 export const baseURL =
     typeof window !== "undefined"
@@ -49,15 +58,16 @@ export const footerContent = {
 
     ],
     contact: {
-        email: "info@fitplaner.co.uk",
-        phone: "+1 234 567 890",
-        address: "Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF",
+        email: COMPANY_EMAIL ?? "",
+        phone: COMPANY_PHONE ?? "",
+        address: companyAddress,
     },
 
     legal: {
-        companyName: "TECHGATE LIMITED",
-        companyNumber: "15742364",
-        address: "Academy House, 11 Dunraven Place, Bridgend, Mid Glamorgan, United Kingdom, CF31 1JF",
+        companyName: COMPANY_LEGAL_NAME ?? "",
+        companyNumber: COMPANY_NUMBER ?? "",
+        address: companyAddress,
+        addressLines: companyAddress ? [companyAddress] : [],
     },
     socials: [
         { label: "Instagram", href: "https://www.instagram.com/fitplaner.co.uk/", icon: FaInstagram },
