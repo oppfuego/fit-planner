@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { authController } from "@/backend/controllers/auth.controller";
 import { attachAuthCookies } from "@/backend/utils/cookies";
+import { registrationGuard } from "@/backend/utils/registrationGuard";
 
 export async function POST(req: NextRequest) {
     try {
+        const blocked = await registrationGuard(req);
+        if (blocked) return blocked;
+
         const body = await req.json();
         const { user, tokens } = await authController.register(body);
         const res = NextResponse.json({ user }, { status: 200 });
